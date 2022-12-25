@@ -1,4 +1,4 @@
-package com.example.ifapps_tubes02;
+package com.example.ifapps_tubes02.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.example.ifapps_tubes02;
+package com.example.ifapps_tubes02.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,12 +7,15 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.ifapps_tubes02.adapter.PertemuanAdapter;
+import com.example.ifapps_tubes02.presenter.PertemuanInteface;
 import com.example.ifapps_tubes02.databinding.PertemuanFragmentBinding;
 import com.example.ifapps_tubes02.model.Pertemuan;
+import com.example.ifapps_tubes02.presenter.PertemuanPresenter;
 
 import java.util.ArrayList;
 
-public class Pertemuanfragment extends Fragment implements PertemuanInteface{
+public class Pertemuanfragment extends Fragment implements PertemuanInteface {
     PertemuanFragmentBinding binding;
     protected PertemuanAdapter adapter;
     protected PertemuanPresenter presenter;
