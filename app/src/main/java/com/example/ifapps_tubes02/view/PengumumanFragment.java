@@ -26,4 +26,5 @@ public class PengumumanFragment extends Fragment {
 
         return this.binding.getRoot();
     }
+
 }
