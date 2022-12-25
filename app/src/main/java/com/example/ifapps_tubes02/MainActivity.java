@@ -15,6 +15,7 @@ import com.example.ifapps_tubes02.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+    LoginFragment loginFragment;
     HomeFragment homeFragment;
     Pertemuanfragment pertemuanfragment;
     PengumumanFragment pengumumanFragment;
@@ -27,9 +28,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding= ActivityMainBinding.inflate(this.getLayoutInflater());
+        binding = ActivityMainBinding.inflate(this.getLayoutInflater());
         setContentView(binding.getRoot());
 
+        loginFragment = LoginFragment.newInstance("loginFrament");
         homeFragment = HomeFragment.newInstance("homeFrament");
         pertemuanfragment = Pertemuanfragment.newInstance("pertemuanFrament");
         pengumumanFragment = PengumumanFragment.newInstance("pengumumanFrament");
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         this.dl = binding.drawerLayout;
         this.setSupportActionBar(toolbar);
 
-        ActionBarDrawerToggle abdt = new ActionBarDrawerToggle(this,dl,toolbar,R.string.openDrawer,R.string.closeDrawer);
+        ActionBarDrawerToggle abdt = new ActionBarDrawerToggle(this, dl, toolbar, R.string.openDrawer, R.string.closeDrawer);
         this.dl.addDrawerListener(abdt);
         abdt.syncState();
 
@@ -56,75 +58,92 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    public void changePage(int page){
+    public void changePage(int page) {
         FragmentTransaction ft = this.fm.beginTransaction();
-        if(page==1){
+        if (page == 1) {
             System.out.println("Change p1");
-            if(this.homeFragment.isAdded()){
-                ft.show(this.homeFragment);
-            }else{
-                ft.add(R.id.fragment_container,this.homeFragment);
+            if (this.loginFragment.isAdded()) {
+                ft.show(this.loginFragment);
+            } else {
+                ft.add(R.id.fragment_container, this.loginFragment);
             }
-            if(this.pengumumanFragment.isAdded()){
+            if (this.pengumumanFragment.isAdded()) {
                 ft.hide(this.pengumumanFragment);
             }
-            if(this.pertemuanfragment.isAdded()){
+            if (this.pertemuanfragment.isAdded()) {
                 ft.hide(this.pertemuanfragment);
             }
-            if(this.frsFragment.isAdded()){
+            if (this.frsFragment.isAdded()) {
                 ft.hide(this.frsFragment);
             }
-        }else if(page==2){
-            System.out.println("Change p2");
-            if(this.pengumumanFragment.isAdded()){
-                ft.show(this.pengumumanFragment);
-            }else{
-                ft.add(R.id.fragment_container,this.pengumumanFragment);
-            }
-            if(this.homeFragment.isAdded()){
-                ft.hide(this.homeFragment);
-            }
-            if(this.pertemuanfragment.isAdded()){
-                ft.hide(this.pertemuanfragment);
-            }
-            if(this.frsFragment.isAdded()){
-                ft.hide(this.frsFragment);
-            }
-        }else if(page==3){
-            System.out.println("Change p3");
-            if(this.pertemuanfragment.isAdded()){
-                ft.show(this.pertemuanfragment);
+            if (page == 2) {
+                System.out.println("Change p2");
+                if (this.homeFragment.isAdded()) {
+                    ft.show(this.homeFragment);
+                } else {
+                    ft.add(R.id.fragment_container, this.homeFragment);
+                }
+                if (this.pengumumanFragment.isAdded()) {
+                    ft.hide(this.pengumumanFragment);
+                }
+                if (this.pertemuanfragment.isAdded()) {
+                    ft.hide(this.pertemuanfragment);
+                }
+                if (this.frsFragment.isAdded()) {
+                    ft.hide(this.frsFragment);
+                }
+            } else if (page == 3) {
+                System.out.println("Change p3");
+                if (this.pengumumanFragment.isAdded()) {
+                    ft.show(this.pengumumanFragment);
+                } else {
+                    ft.add(R.id.fragment_container, this.pengumumanFragment);
+                }
+                if (this.homeFragment.isAdded()) {
+                    ft.hide(this.homeFragment);
+                }
+                if (this.pertemuanfragment.isAdded()) {
+                    ft.hide(this.pertemuanfragment);
+                }
+                if (this.frsFragment.isAdded()) {
+                    ft.hide(this.frsFragment);
+                }
+            } else if (page == 4) {
+                System.out.println("Change p4");
+                if (this.pertemuanfragment.isAdded()) {
+                    ft.show(this.pertemuanfragment);
 
-            }else{
-                ft.add(R.id.fragment_container,this.pertemuanfragment);
-            }
-            if(this.homeFragment.isAdded()){
-                ft.hide(this.homeFragment);
-            }
-            if(this.pengumumanFragment.isAdded()){
-                ft.hide(this.pengumumanFragment);
-            }
-            if(this.frsFragment.isAdded()){
-                ft.hide(this.frsFragment);
-            }
-        }else if(page==4){
-            System.out.println("Change p4");
-            if(this.frsFragment.isAdded()){
-                ft.show(this.frsFragment);
+                } else {
+                    ft.add(R.id.fragment_container, this.pertemuanfragment);
+                }
+                if (this.homeFragment.isAdded()) {
+                    ft.hide(this.homeFragment);
+                }
+                if (this.pengumumanFragment.isAdded()) {
+                    ft.hide(this.pengumumanFragment);
+                }
+                if (this.frsFragment.isAdded()) {
+                    ft.hide(this.frsFragment);
+                }
+            } else if (page == 5) {
+                System.out.println("Change p5");
+                if (this.frsFragment.isAdded()) {
+                    ft.show(this.frsFragment);
 
-            }else{
-                ft.add(R.id.fragment_container,this.frsFragment);
+                } else {
+                    ft.add(R.id.fragment_container, this.frsFragment);
+                }
+                if (this.homeFragment.isAdded()) {
+                    ft.hide(this.homeFragment);
+                }
+                if (this.pengumumanFragment.isAdded()) {
+                    ft.hide(this.pertemuanfragment);
+                }
+                if (this.pertemuanfragment.isAdded()) {
+                    ft.hide(this.pertemuanfragment);
+                }
             }
-            if(this.homeFragment.isAdded()){
-                ft.hide(this.homeFragment);
-            }
-            if(this.pengumumanFragment.isAdded()){
-                ft.hide(this.pertemuanfragment);
-            }
-            if(this.pertemuanfragment.isAdded()){
-                ft.hide(this.pertemuanfragment);
-            }
+            ft.commit();
         }
-        ft.commit();
     }
 }
