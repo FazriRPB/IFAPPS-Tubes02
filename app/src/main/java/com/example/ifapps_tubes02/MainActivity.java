@@ -67,89 +67,21 @@ public class MainActivity extends AppCompatActivity {
     public void changePage(int page) {
         FragmentTransaction ft = this.fm.beginTransaction();
         if (page == 1) {
-            System.out.println("Change p1");
-            if (this.loginFragment.isAdded()) {
-                ft.show(this.loginFragment);
-            } else {
-                ft.add(R.id.fragment_container, this.loginFragment);
-            }
-            if (this.pengumumanFragment.isAdded()) {
-                ft.hide(this.pengumumanFragment);
-            }
-            if (this.pertemuanfragment.isAdded()) {
-                ft.hide(this.pertemuanfragment);
-            }
-            if (this.frsFragment.isAdded()) {
-                ft.hide(this.frsFragment);
-            }
-            if (page == 2) {
-                System.out.println("Change p2");
-                if (this.homeFragment.isAdded()) {
-                    ft.show(this.homeFragment);
-                } else {
-                    ft.add(R.id.fragment_container, this.homeFragment);
-                }
-                if (this.pengumumanFragment.isAdded()) {
-                    ft.hide(this.pengumumanFragment);
-                }
-                if (this.pertemuanfragment.isAdded()) {
-                    ft.hide(this.pertemuanfragment);
-                }
-                if (this.frsFragment.isAdded()) {
-                    ft.hide(this.frsFragment);
-                }
-            } else if (page == 3) {
-                System.out.println("Change p3");
-                if (this.pengumumanFragment.isAdded()) {
-                    ft.show(this.pengumumanFragment);
-                } else {
-                    ft.add(R.id.fragment_container, this.pengumumanFragment);
-                }
-                if (this.homeFragment.isAdded()) {
-                    ft.hide(this.homeFragment);
-                }
-                if (this.pertemuanfragment.isAdded()) {
-                    ft.hide(this.pertemuanfragment);
-                }
-                if (this.frsFragment.isAdded()) {
-                    ft.hide(this.frsFragment);
-                }
-            } else if (page == 4) {
-                System.out.println("Change p4");
-                if (this.pertemuanfragment.isAdded()) {
-                    ft.show(this.pertemuanfragment);
-
-                } else {
-                    ft.add(R.id.fragment_container, this.pertemuanfragment);
-                }
-                if (this.homeFragment.isAdded()) {
-                    ft.hide(this.homeFragment);
-                }
-                if (this.pengumumanFragment.isAdded()) {
-                    ft.hide(this.pengumumanFragment);
-                }
-                if (this.frsFragment.isAdded()) {
-                    ft.hide(this.frsFragment);
-                }
-            } else if (page == 5) {
-                System.out.println("Change p5");
-                if (this.frsFragment.isAdded()) {
-                    ft.show(this.frsFragment);
-
-                } else {
-                    ft.add(R.id.fragment_container, this.frsFragment);
-                }
-                if (this.homeFragment.isAdded()) {
-                    ft.hide(this.homeFragment);
-                }
-                if (this.pengumumanFragment.isAdded()) {
-                    ft.hide(this.pertemuanfragment);
-                }
-                if (this.pertemuanfragment.isAdded()) {
-                    ft.hide(this.pertemuanfragment);
-                }
-            }
-            ft.commit();
+            ft.replace(R.id.fragment_container, this.loginFragment)
+                    .addToBackStack(null);
+        }else if (page == 2) {
+            ft.replace(R.id.fragment_container, this.homeFragment)
+                    .addToBackStack(null);
+        }else if (page == 3) {
+            ft.replace(R.id.fragment_container, this.pengumumanFragment)
+                    .addToBackStack(null);
+        }else if (page == 4) {
+            ft.replace(R.id.fragment_container, this.pertemuanfragment)
+                    .addToBackStack(null);
+        }else if (page == 5) {
+            ft.replace(R.id.fragment_container, this.frsFragment)
+                    .addToBackStack(null);
         }
+        ft.commit();
     }
 }

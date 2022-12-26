@@ -28,19 +28,19 @@ public class DrawerFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         if(view==this.binding.tvHome){
             Bundle result = new Bundle();
-            result.putInt("page",1);
+            result.putInt("page",2);
             this.getParentFragmentManager().setFragmentResult("changePage",result);
         }else if(view==this.binding.tvPengumuman){
             Bundle result = new Bundle();
-            result.putInt("page",2);
+            result.putInt("page",3);
             this.getParentFragmentManager().setFragmentResult("changePage",result);
         }else if(view==this.binding.tvPertemuan){
             Bundle result = new Bundle();
-            result.putInt("page",3);
+            result.putInt("page",4);
             this.getParentFragmentManager().setFragmentResult("changePage",result);
         }else if(view==this.binding.tvFrs) {
             Bundle result = new Bundle();
-            result.putInt("page",4);
+            result.putInt("page",5);
             this.getParentFragmentManager().setFragmentResult("changePage",result);
         }
     }

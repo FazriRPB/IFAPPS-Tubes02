@@ -9,10 +9,11 @@ public class PertemuanPresenter {
 
     private Pertemuanfragment view;
     Pertemuan pertemuan;
-    ArrayList<Pertemuan> datas= new ArrayList<Pertemuan>();
+    ArrayList<Pertemuan> datas;
 
     public PertemuanPresenter(Pertemuanfragment view) {
         this.view= view;
+        this.datas= new ArrayList<Pertemuan>();
     }
 
     //logic pertemuan(contoh : ambil inisialisasi)
