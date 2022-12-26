@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/left_fragment"
-            android:name="com.example.ifapps_tubes02.DrawerFragment"/>
+            android:name="com.example.ifapps_tubes02.view.DrawerFragment"/>
 
     </RelativeLayout>
 

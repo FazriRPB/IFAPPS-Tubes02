@@ -12,6 +12,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.example.ifapps_tubes02.databinding.ActivityMainBinding;
+import com.example.ifapps_tubes02.view.DrawerFragment;
+import com.example.ifapps_tubes02.view.FRSFragment;
+import com.example.ifapps_tubes02.view.HomeFragment;
+import com.example.ifapps_tubes02.view.PengumumanFragment;
+import com.example.ifapps_tubes02.view.Pertemuanfragment;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -39,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.toolbar = binding.toolbar;
         this.dl = binding.drawerLayout;
-        this.setSupportActionBar(toolbar);
+//        this.setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle abdt = new ActionBarDrawerToggle(this, dl, toolbar, R.string.openDrawer, R.string.closeDrawer);
         this.dl.addDrawerListener(abdt);

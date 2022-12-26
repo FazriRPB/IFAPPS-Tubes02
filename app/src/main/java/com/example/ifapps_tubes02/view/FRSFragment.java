@@ -1,4 +1,4 @@
-package com.example.ifapps_tubes02;
+package com.example.ifapps_tubes02.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,13 +7,13 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.ifapps_tubes02.databinding.PertemuanFragmentBinding;
+import com.example.ifapps_tubes02.databinding.FrsFragmentBinding;
 
-public class Pertemuanfragment extends Fragment {
-    PertemuanFragmentBinding binding;
+public class FRSFragment extends Fragment {
+    FrsFragmentBinding binding;
 
-    public static Pertemuanfragment newInstance(String title){
-        Pertemuanfragment fragment = new Pertemuanfragment();
+    public static FRSFragment newInstance(String title){
+        FRSFragment fragment = new FRSFragment();
         Bundle args = new Bundle();
         args.putString("title", title);
         fragment.setArguments(args);
@@ -22,7 +22,7 @@ public class Pertemuanfragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        this.binding = PertemuanFragmentBinding.inflate(inflater,container,false);
+        this.binding = FrsFragmentBinding.inflate(inflater,container,false);
 
         return this.binding.getRoot();
     }

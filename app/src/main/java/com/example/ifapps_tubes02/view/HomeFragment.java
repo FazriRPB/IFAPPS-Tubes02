@@ -1,4 +1,4 @@
-package com.example.ifapps_tubes02;
+package com.example.ifapps_tubes02.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,13 +7,13 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.ifapps_tubes02.databinding.PengumumanFragmentBinding;
+import com.example.ifapps_tubes02.databinding.HomeFragmentBinding;
 
-public class PengumumanFragment extends Fragment {
-    PengumumanFragmentBinding binding;
+public class HomeFragment extends Fragment {
+    HomeFragmentBinding binding;
 
-    public static PengumumanFragment newInstance(String title){
-        PengumumanFragment fragment = new PengumumanFragment();
+    public static HomeFragment newInstance(String title){
+        HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
         args.putString("title", title);
         fragment.setArguments(args);
@@ -22,7 +22,7 @@ public class PengumumanFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        this.binding = PengumumanFragmentBinding.inflate(inflater,container,false);
+        this.binding = HomeFragmentBinding.inflate(inflater,container,false);
 
         return this.binding.getRoot();
     }
