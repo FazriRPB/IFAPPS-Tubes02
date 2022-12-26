@@ -1,4 +1,4 @@
-package com.example.ifapps_tubes02;
+package com.example.ifapps_tubes02.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.ifapps_tubes02.databinding.HomeFragmentBinding;
 import com.example.ifapps_tubes02.databinding.LoginFragmentBinding;
 
 public class LoginFragment extends Fragment {

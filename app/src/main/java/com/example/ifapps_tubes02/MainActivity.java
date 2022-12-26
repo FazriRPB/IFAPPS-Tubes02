@@ -15,6 +15,7 @@ import com.example.ifapps_tubes02.databinding.ActivityMainBinding;
 import com.example.ifapps_tubes02.view.DrawerFragment;
 import com.example.ifapps_tubes02.view.FRSFragment;
 import com.example.ifapps_tubes02.view.HomeFragment;
+import com.example.ifapps_tubes02.view.LoginFragment;
 import com.example.ifapps_tubes02.view.PengumumanFragment;
 import com.example.ifapps_tubes02.view.Pertemuanfragment;
 
