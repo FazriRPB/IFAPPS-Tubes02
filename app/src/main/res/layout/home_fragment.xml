@@ -1,13 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradientbg"
+    android:id="@+id/frag_containerHome">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="fragment home"
-        android:textSize="30dp"/>
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/Iv1"
+            android:layout_width="200dp"
+            android:layout_height="65dp"
+            android:src="@drawable/imguser" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:background="@drawable/lines" />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="John Setiabudi"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Mahasiswa"
+            android:textSize="20dp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="120dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <Button
+                android:id="@+id/btnPengumuman"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_btncircle"
+                android:drawableLeft="@drawable/speaker"
+                android:layout_marginRight="20dp"
+                app:backgroundTint="@color/blue"></Button>
+
+            <Button
+                android:id="@+id/btnPertemuan"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_btncircle"
+                android:drawableLeft="@drawable/meet"
+                android:layout_marginRight="20dp"
+                app:backgroundTint="@color/blue"></Button>
+
+            <Button
+                android:id="@+id/btnFRS"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_btncircle"
+                android:drawableLeft="@drawable/doc"
+                app:backgroundTint="@color/blue"></Button>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
