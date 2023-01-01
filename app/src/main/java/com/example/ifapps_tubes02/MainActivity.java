@@ -1,7 +1,6 @@
 package com.example.ifapps_tubes02;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -12,7 +11,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.example.ifapps_tubes02.databinding.ActivityMainBinding;
-import com.example.ifapps_tubes02.view.DrawerFragment;
 import com.example.ifapps_tubes02.view.FRSFragment;
 import com.example.ifapps_tubes02.view.HomeFragment;
 import com.example.ifapps_tubes02.view.LoginFragment;
@@ -26,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     Pertemuanfragment pertemuanfragment;
     PengumumanFragment pengumumanFragment;
     FRSFragment frsFragment;
-    DrawerFragment drawer;
     FragmentManager fm;
     DrawerLayout dl;
     Toolbar toolbar;
@@ -43,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
         pengumumanFragment = PengumumanFragment.newInstance("pengumumanFrament");
         frsFragment = FRSFragment.newInstance("frsFrament");
 
-        this.toolbar = binding.toolbar;
-        this.dl = binding.drawerLayout;
+
+//        this.toolbar = binding.toolbar;
 //        this.setSupportActionBar(toolbar);
 
-        ActionBarDrawerToggle abdt = new ActionBarDrawerToggle(this, dl, toolbar, R.string.openDrawer, R.string.closeDrawer);
-        this.dl.addDrawerListener(abdt);
-        abdt.syncState();
+//        ActionBarDrawerToggle abdt = new ActionBarDrawerToggle(this, dl, toolbar, R.string.openDrawer, R.string.closeDrawer);
+//        this.dl.addDrawerListener(abdt);
+//        abdt.syncState();
 
         this.fm = this.getSupportFragmentManager();
         changePage(1);
@@ -67,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     public void changePage(int page) {
         FragmentTransaction ft = this.fm.beginTransaction();
         if (page == 1) {
-            ft.replace(R.id.fragment_container, this.loginFragment)
+            ft.add(R.id.fragment_container, this.loginFragment)
                     .addToBackStack(null);
         }else if (page == 2) {
             ft.replace(R.id.fragment_container, this.homeFragment)

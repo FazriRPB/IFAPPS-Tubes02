@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    android:fitsSystemWindows="true"
-    android:id="@+id/drawer_layout"
+<LinearLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
@@ -13,34 +11,11 @@
         android:layout_width="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
         <FrameLayout
             android:id="@+id/fragment_container"
-            android:layout_height="0dp"
-            android:layout_width="match_parent"
-            android:layout_weight="1"/>
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:id="@+id/left_drawer"
-        android:layout_gravity="start">
-
-        <fragment
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/left_fragment"
-            android:name="com.example.ifapps_tubes02.view.DrawerFragment"/>
-
-    </RelativeLayout>
-
-</androidx.drawerlayout.widget.DrawerLayout>
+</LinearLayout>
