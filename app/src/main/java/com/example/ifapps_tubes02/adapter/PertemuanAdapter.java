@@ -33,7 +33,7 @@ public class PertemuanAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
+    public Pertemuan getItem(int i) {
         return this.arrlist.get(i);
     }
 
