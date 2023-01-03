@@ -5,12 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 
+import com.example.ifapps_tubes02.MainActivity;
+import com.example.ifapps_tubes02.adapter.PengumumanAdapter;
 import com.example.ifapps_tubes02.databinding.PengumumanFragmentBinding;
+import com.example.ifapps_tubes02.model.Pengumuman;
 
-public class PengumumanFragment extends Fragment {
+public class PengumumanFragment extends Fragment implements View.OnClickListener{
     PengumumanFragmentBinding binding;
+    PengumumanAdapter adapter;
 
     public static PengumumanFragment newInstance(String title){
         PengumumanFragment fragment = new PengumumanFragment();
@@ -24,7 +30,26 @@ public class PengumumanFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         this.binding = PengumumanFragmentBinding.inflate(inflater,container,false);
 
+        this.adapter = new PengumumanAdapter(this.getActivity());
+        this.binding.lvItemsPengumuman.setAdapter(adapter);
+
+        this.binding.btnAdd.setOnClickListener(this);
+
+        getParentFragmentManager().setFragmentResultListener("pengumuman", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                Pengumuman pengumuman = new Pengumuman(result.getString("judul"),result.getString("tag"),result.getString("deskripsi"),false);
+                adapter.addPengumuman(pengumuman);
+            }
+        });
+
         return this.binding.getRoot();
     }
 
+    @Override
+    public void onClick(View view) {
+        if(view==this.binding.btnAdd){
+            ((MainActivity)getActivity()).changePage(6);
+        }
+    }
 }

@@ -1,15 +1,13 @@
 package com.example.ifapps_tubes02.adapter;
 
 import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.example.ifapps_tubes02.databinding.ItemListPengumumanBinding;
-import com.example.ifapps_tubes02.databinding.ItemListPertemuanBinding;
 import com.example.ifapps_tubes02.model.Pengumuman;
-import com.example.ifapps_tubes02.model.Pertemuan;
-import com.example.ifapps_tubes02.presenter.PengumumanPresenter;
 
 import java.util.ArrayList;
 
@@ -21,6 +19,16 @@ public class PengumumanAdapter extends BaseAdapter {
     public PengumumanAdapter(Activity activity){
         this.activity = activity;
         this.arrlist = new ArrayList<>();
+        this.arrlist.add(new Pengumuman("1","tag 1","1",false));
+        this.arrlist.add(new Pengumuman("2","tag 2","1",false));
+        this.arrlist.add(new Pengumuman("3","tag 3","1",false));
+        this.arrlist.add(new Pengumuman("4","tag 4","1",false));
+        this.arrlist.add(new Pengumuman("5","tag 5","1",false));
+    }
+
+    public void addPengumuman(Pengumuman pengumuman){
+        this.arrlist.add(pengumuman);
+        this.notifyDataSetChanged();
     }
 
     @Override
@@ -39,13 +47,12 @@ public class PengumumanAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int i, View view, ViewGroup parent) {
         ViewHolder viewHolder;
-
         if (view== null){
-            binding= ItemListPengumumanBinding.inflate(this.activity.getLayoutInflater());
+            binding= ItemListPengumumanBinding.inflate(LayoutInflater.from(parent.getContext()));
+            viewHolder= new ViewHolder();
             view= binding.getRoot();
-            viewHolder= new ViewHolder(binding, this, i);
             view.setTag(viewHolder);
         }else{
             viewHolder= (ViewHolder) view.getTag();
@@ -56,19 +63,15 @@ public class PengumumanAdapter extends BaseAdapter {
         return view;
     }
 
-    public class ViewHolder{
-        ItemListPengumumanBinding binding;
-        PengumumanAdapter adapter;
-        int i;
-        PengumumanPresenter presenter;
-
-        public ViewHolder(ItemListPengumumanBinding binding, PengumumanAdapter adapter, int i){
-            this.binding = binding;
-            this.adapter = adapter;
-            this.i = i;
-        }
+    public class ViewHolder implements View.OnClickListener{
 
         public void updateView(Pengumuman pengumuman){
+            binding.tvJudul.setText(pengumuman.getJudul());
+            binding.tvDesignasi.setText(pengumuman.gettag());
+        }
+
+        @Override
+        public void onClick(View view) {
 
         }
     }

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E8F1FF">
+
+    <TextView
+        android:id="@+id/tv_tambah_pengumuman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tambah Pengumuman"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:paddingBottom="20dp"
+        android:paddingTop="10dp"/>
+
+    <RelativeLayout
+        android:id="@+id/lay_pengumuman_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_tambah_pengumuman"
+        android:layout_above="@id/lay_btn_simpan"
+        android:layout_centerHorizontal="true">
+
+        <RelativeLayout
+            android:id="@+id/lay_judul"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="30dp">
+
+            <TextView
+                android:id="@+id/tv_judul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Judul"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/et_judul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_judul"
+                android:background="@drawable/boxed_edit_text"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lay_tag"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/lay_judul"
+            android:paddingBottom="30dp">
+
+            <TextView
+                android:id="@+id/tv_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tag"
+                android:textSize="20dp"/>
+
+            <EditText
+                android:id="@+id/et_tag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_tag"
+                android:background="@drawable/boxed_edit_text"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lay_deskripsi"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/lay_tag">
+
+            <TextView
+                android:id="@+id/tv_deskripsi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi"
+                android:textSize="20dp"/>
+
+            <EditText
+                android:id="@+id/et_deskripsi"
+                android:layout_width="match_parent"
+                android:layout_height="340dp"
+                android:layout_below="@id/tv_deskripsi"
+                android:background="@drawable/boxed_edit_text"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/lay_btn_simpan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="20dp">
+
+        <Button
+            android:id="@+id/btn_simpan"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn"
+            app:backgroundTint="@color/blue"
+            android:text="simpan"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

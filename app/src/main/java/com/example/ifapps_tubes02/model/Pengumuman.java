@@ -2,12 +2,14 @@ package com.example.ifapps_tubes02.model;
 
 public class Pengumuman {
     private String judul;
-    private String designasi;
+    private String tag;
+    private String deskripsi;
     private boolean readStatus;
 
-    public Pengumuman(String judul, String designasi, boolean readStatus){
+    public Pengumuman(String judul, String tag, String deskripsi, boolean readStatus){
         this.judul = judul;
-        this.designasi = designasi;
+        this.tag = tag;
+        this.deskripsi = deskripsi;
         this.readStatus = readStatus;
     }
 
@@ -15,8 +17,12 @@ public class Pengumuman {
         return this.judul;
     }
 
-    public String getDesignasi(){
-        return this.designasi;
+    public String gettag(){
+        return this.tag;
+    }
+
+    public String getDeskripsi() {
+        return deskripsi;
     }
 
     public boolean readStatus(){
