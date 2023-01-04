@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E8F1FF">
+
+    <TextView
+        android:id="@+id/tv_tambah_pertemuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tambah Pertemuan"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:paddingBottom="20dp"
+        android:paddingTop="10dp"/>
+
+    <RelativeLayout
+        android:id="@+id/lay_pertemuan_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_tambah_pertemuan"
+        android:layout_above="@id/lay_btn_simpan"
+        android:layout_centerHorizontal="true">
+
+        <RelativeLayout
+            android:id="@+id/lay_judul"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="30dp">
+
+            <TextView
+                android:id="@+id/tv_judul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Judul"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/et_judul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_judul"
+                android:background="@drawable/boxed_edit_text"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lay_jadwal"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/lay_judul"
+            android:paddingBottom="30dp">
+
+            <TextView
+                android:id="@+id/tv_jadwal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jadwal"
+                android:textSize="20dp"/>
+
+            <EditText
+                android:id="@+id/et_jadwal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_jadwal"
+                android:background="@drawable/boxed_edit_text"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lay_partisipan"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/lay_jadwal"
+            android:paddingBottom="30dp">
+
+            <TextView
+                android:id="@+id/tv_partisipan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Partispan"
+                android:textSize="20dp"/>
+
+            <EditText
+                android:id="@+id/et_partispan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_partisipan"
+                android:background="@drawable/boxed_edit_text"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lay_lihat_jadwal_dosen"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/lay_partisipan">
+
+            <Button
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                app:backgroundTint="@color/blue"
+                android:text="lihat jadwal dosen"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/lay_deskripsi"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/lay_lihat_jadwal_dosen">
+
+            <TextView
+                android:id="@+id/tv_deskripsi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi"
+                android:textSize="20dp"/>
+
+            <EditText
+                android:id="@+id/et_deskripsi"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_below="@id/tv_deskripsi"
+                android:background="@drawable/boxed_edit_text"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/lay_btn_simpan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="20dp">
+
+        <Button
+            android:id="@+id/btn_simpan"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn"
+            app:backgroundTint="@color/blue"
+            android:text="simpan"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
