@@ -60,7 +60,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         role  = preferences.getString("role",null);//second parameter default value.
         System.out.println(role);
         identifyRole(role);
-//        this.binding.tv3.setText(retrivedToken);
         callAPI("https://ifportal.labftis.net/api/v1/users/self");
 
         return this.binding.getRoot();
@@ -70,7 +69,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         this.binding.tv3.setText(input);
     }
     public void callAPI(String Base_URL){
-//        Toast.makeText(getActivity(),Base_URL,Toast.LENGTH_LONG).show();
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
                 Base_URL, new Response.Listener<String>() {
@@ -111,10 +109,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
     }
     public void onFailed(VolleyError error) throws JSONException {
-
-        String output = new String(error.networkResponse.data);
-        JSONObject jsonObject = new JSONObject(output);
-        String keluaran = jsonObject.get("errcode").toString();
+        String keluaran= "";
+        if(error instanceof NoConnectionError){
+            keluaran= "Tidak ada koneksi internet";
+        }else if(error instanceof TimeoutError){
+            keluaran= "Tidak dapat terhubung dengan jaringan! \n Silahkan Coba Lagi!";
+        }
+        else{
+            String output = new String(error.networkResponse.data);
+            JSONObject jsonObject = new JSONObject(output);
+            keluaran = jsonObject.get("errcode").toString();
+        }
 
         Toast.makeText(getActivity(),keluaran,Toast.LENGTH_LONG).show();
     }
