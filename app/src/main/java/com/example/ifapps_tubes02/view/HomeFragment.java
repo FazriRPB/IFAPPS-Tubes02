@@ -1,21 +1,44 @@
 package com.example.ifapps_tubes02.view;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.ifapps_tubes02.MainActivity;
 import com.example.ifapps_tubes02.databinding.HomeFragmentBinding;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
     HomeFragmentBinding binding;
+    String retrivedToken;
+    String role;
 
     public static HomeFragment newInstance(String title){
         HomeFragment fragment = new HomeFragment();
@@ -31,25 +54,69 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         this.binding.btnFRS.setOnClickListener(this);
         this.binding.btnPengumuman.setOnClickListener(this);
         this.binding.btnPertemuan.setOnClickListener(this);
-        getParentFragmentManager().setFragmentResultListener("identifyRole", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
-                // We use a String here, but any type that can be put in a Bundle is supported
-                String result = bundle.getString("role");
-                String nama= bundle.getString("nama");
-                // Do something with the result
-                identifyRole(result, nama);
-                System.out.println(result);
-            }
-        });
 
+        SharedPreferences preferences = getActivity().getSharedPreferences("IFAPPS-Tubes02", Context.MODE_PRIVATE);
+        retrivedToken  = preferences.getString("TOKEN",null);//second parameter default value.
+        role  = preferences.getString("role",null);//second parameter default value.
+        System.out.println(role);
+        identifyRole(role);
+//        this.binding.tv3.setText(retrivedToken);
+        callAPI("https://ifportal.labftis.net/api/v1/users/self");
 
         return this.binding.getRoot();
     }
 
-    private void identifyRole(String input, String nama) {
+    private void identifyRole(String input) {
         this.binding.tv3.setText(input);
-        this.binding.tv1.setText(nama);
+    }
+    public void callAPI(String Base_URL){
+//        Toast.makeText(getActivity(),Base_URL,Toast.LENGTH_LONG).show();
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                Base_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    onSucces(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                try {
+                    onFailed(error);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> map = new HashMap<>();
+                map.put("Authorization","Bearer "+retrivedToken);
+                return map;
+            }
+        };
+        queue.add(stringRequest);
+    }
+    public void onSucces(String response) throws JSONException {
+        JSONObject jsonObject = new JSONObject(response);
+        Object object = jsonObject.getString("name");
+        JSONArray object1= jsonObject.getJSONArray("roles");
+        if(!object.equals(null)){
+            this.binding.tv1.setText(object.toString());
+            this.binding.tv3.setText(object1.get(0).toString());
+        }
+    }
+    public void onFailed(VolleyError error) throws JSONException {
+
+        String output = new String(error.networkResponse.data);
+        JSONObject jsonObject = new JSONObject(output);
+        String keluaran = jsonObject.get("errcode").toString();
+
+        Toast.makeText(getActivity(),keluaran,Toast.LENGTH_LONG).show();
     }
 
     @Override

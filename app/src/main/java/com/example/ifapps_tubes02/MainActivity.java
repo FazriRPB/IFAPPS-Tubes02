@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.ifapps_tubes02.databinding.ActivityMainBinding;
@@ -50,9 +52,17 @@ public class MainActivity extends AppCompatActivity {
 //        ActionBarDrawerToggle abdt = new ActionBarDrawerToggle(this, dl, toolbar, R.string.openDrawer, R.string.closeDrawer);
 //        this.dl.addDrawerListener(abdt);
 //        abdt.syncState();
-
         this.fm = this.getSupportFragmentManager();
-        changePage(1);
+
+        FragmentTransaction ft = this.fm.beginTransaction();
+        SharedPreferences preferences = this.getSharedPreferences("IFAPPS-Tubes02", Context.MODE_PRIVATE);
+        String retrivedToken  = preferences.getString("TOKEN",null);//second parameter default value.
+        if(retrivedToken!= null){
+            changePage(2);
+        }else{
+            ft.add(R.id.fragment_container, this.loginFragment).commit();
+
+        }
 
         this.getSupportFragmentManager().setFragmentResultListener(
                 "changePage", this, new FragmentResultListener() {
@@ -60,18 +70,17 @@ public class MainActivity extends AppCompatActivity {
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                         int page = result.getInt("page");
                         changePage(page);
+                        String token = result.getString("token");
+                        preferences.edit().putString("TOKEN",token).apply();
                     }
                 });
     }
 
     public void changePage(int page) {
         FragmentTransaction ft = this.fm.beginTransaction();
-        if (page == 1) {
-            ft.add(R.id.fragment_container, this.loginFragment)
-                    .addToBackStack(null);
-        }else if (page == 2) {
-            ft.replace(R.id.fragment_container, this.homeFragment)
-                    .addToBackStack(null);
+        if (page == 2) {
+            ft.remove(this.loginFragment);
+            ft.add(R.id.fragment_container, this.homeFragment);
         }else if (page == 3) {
             ft.replace(R.id.fragment_container, this.pengumumanFragment)
                     .addToBackStack(null);
