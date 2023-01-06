@@ -30,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="John Setiabudi"
             android:textSize="30dp"
             android:textStyle="bold" />
 
@@ -39,7 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Mahasiswa"
             android:textSize="20dp"
             android:textStyle="bold|italic" />
 

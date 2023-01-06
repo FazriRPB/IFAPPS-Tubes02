@@ -42,7 +42,7 @@
             android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="  Username"
+            android:hint="  Email"
             android:textStyle="italic"
             android:drawableLeft="@drawable/user" />
 
@@ -53,7 +53,55 @@
             android:layout_below="@+id/etUsername"
             android:hint="  Password"
             android:textStyle="italic"
+            android:inputType="textPassword"
             android:drawableLeft="@drawable/pass"/>
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etPassword"
+            android:hint="  Role"
+            android:textSize="18dp"
+            android:textStyle="italic"
+            android:drawableLeft="@drawable/role"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etRole"
+            android:layout_below="@+id/etRole"
+            android:orientation="vertical"
+            >
+            <RadioButton
+                android:id="@+id/admin"
+                android:textStyle="italic"
+                android:hint="Admin"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content">
+            </RadioButton>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/mahasiswa"
+                android:textStyle="italic"
+                android:layout_marginLeft="10dp"
+
+                android:hint="Student"
+                >
+            </RadioButton>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dosen"
+                android:textStyle="italic"
+                android:hint="Lecturer"
+                android:layout_marginLeft="10dp"
+
+                >
+            </RadioButton>
+        </RadioGroup>
+
 
         <TextView
             android:layout_width="match_parent"
