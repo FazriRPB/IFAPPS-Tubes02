@@ -68,7 +68,6 @@ public class Login implements LoginUI.main {
         };
         queue.add(stringRequest);
     }
-
     @Override
     public String successProcessing(String response) {
         Output output = gson.fromJson(response,Output.class);

@@ -5,39 +5,46 @@
     android:layout_height="wrap_content"
     android:id="@+id/lay_pengumuman">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/lay_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_toLeftOf="@id/iv_read_check"
         android:layout_alignParentLeft="true">
 
         <TextView
             android:id="@+id/tv_judul"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="judul here"
-            android:textSize="30dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:layout_centerHorizontal="true"/>
 
         <TextView
-            android:id="@+id/tv_designasi"
-            android:textSize="20dp"
+            android:id="@+id/tv_tags"
+            android:textSize="15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="designasi here"
+            android:textStyle="italic"
+            android:layout_marginLeft="10dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/tv_judul"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/iv_read_check"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/read_icon"/>
+<!--    <ImageView-->
+<!--        android:id="@+id/iv_read_check"-->
+<!--        android:layout_width="60dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:src="@drawable/read_icon"/>-->
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="DELETE"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:id="@+id/btn_delete">-->
+<!--    </Button>-->
 
 </RelativeLayout>

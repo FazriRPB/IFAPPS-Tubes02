@@ -38,7 +38,6 @@ import java.util.Map;
 public class HomeFragment extends Fragment implements View.OnClickListener {
     HomeFragmentBinding binding;
     String retrivedToken;
-    String role;
 
     public static HomeFragment newInstance(String title){
         HomeFragment fragment = new HomeFragment();
@@ -51,31 +50,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         this.binding = HomeFragmentBinding.inflate(inflater,container,false);
+        SharedPreferences preferences = getActivity().getSharedPreferences("IFAPPS-Tubes02", Context.MODE_PRIVATE);
+        retrivedToken  = preferences.getString("TOKEN",null);//second parameter default value.
+        API();
+
         this.binding.btnFRS.setOnClickListener(this);
         this.binding.btnPengumuman.setOnClickListener(this);
         this.binding.btnPertemuan.setOnClickListener(this);
 
-        SharedPreferences preferences = getActivity().getSharedPreferences("IFAPPS-Tubes02", Context.MODE_PRIVATE);
-        retrivedToken  = preferences.getString("TOKEN",null);//second parameter default value.
-        role  = preferences.getString("role",null);//second parameter default value.
-        System.out.println(role);
-        identifyRole(role);
-        callAPI("https://ifportal.labftis.net/api/v1/users/self");
-
         return this.binding.getRoot();
     }
 
-    private void identifyRole(String input) {
-        this.binding.tv3.setText(input);
-    }
-    public void callAPI(String Base_URL){
+    public void API(){
+        String Base_URL= "https://ifportal.labftis.net/api/v1/users/self";
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
                 Base_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    onSucces(response);
+                    onSuccess(response);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -99,13 +93,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         };
         queue.add(stringRequest);
     }
-    public void onSucces(String response) throws JSONException {
+    public void onSuccess(String response) throws JSONException {
         JSONObject jsonObject = new JSONObject(response);
         Object object = jsonObject.getString("name");
         JSONArray object1= jsonObject.getJSONArray("roles");
         if(!object.equals(null)){
             this.binding.tv1.setText(object.toString());
             this.binding.tv3.setText(object1.get(0).toString());
+            Bundle result= new Bundle();
+            result.putString("role", object1.get(0).toString());
+            getParentFragmentManager().setFragmentResult("identifyRole", result);
         }
     }
     public void onFailed(VolleyError error) throws JSONException {

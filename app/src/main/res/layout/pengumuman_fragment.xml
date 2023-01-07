@@ -16,13 +16,52 @@
         android:paddingBottom="10dp"
         android:paddingTop="10dp"/>
 
-    <ListView
-        android:id="@+id/lv_items_pengumuman"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_below="@id/tv_pengumuman">
-    </ListView>
+        <EditText
+            android:layout_gravity="center"
+            android:id="@+id/et_search"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:hint="   Search"
+            android:background="@drawable/boxed_edit_text"
+            android:drawableRight="@drawable/icon_search">
+        </EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/filter_stat"
+            android:layout_gravity="center"
+            android:text="Filter :"
+            android:textStyle="italic">
+        </TextView>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_filter"
+            android:text="Filter"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="@color/blue">
+        </Button>
+        <ListView
+            android:id="@+id/lv_items_pengumuman"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:padding="10dp">
+        </ListView>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NEXT"
+            android:id="@+id/btn_next"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/blue">
+        </Button>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/lay_fab"
