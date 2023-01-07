@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -34,6 +35,21 @@ public class PengumumanFragment extends Fragment implements View.OnClickListener
         this.binding.lvItemsPengumuman.setAdapter(adapter);
 
         this.binding.btnAdd.setOnClickListener(this);
+
+        this.binding.lvItemsPengumuman.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                if(position==0){
+                    ((MainActivity)getActivity()).changePage(7);
+                }else if(position==1){
+                    ((MainActivity)getActivity()).changePage(7);
+                }else if(position==2){
+                    ((MainActivity)getActivity()).changePage(7);
+                }else{
+
+                }
+            }
+        });
 
         getParentFragmentManager().setFragmentResultListener("pengumuman", this, new FragmentResultListener() {
             @Override

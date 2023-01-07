@@ -64,12 +64,27 @@
                 android:text="Jadwal"
                 android:textSize="20dp"/>
 
-            <EditText
-                android:id="@+id/et_jadwal"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/tglbtn"
+                style="?android:spinnerStyle"
+                android:layout_width="126dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_jadwal"
-                android:background="@drawable/boxed_edit_text"/>
+                android:backgroundTint="#808080"
+                android:onClick="openDatePicker"
+                android:text="Pilih Tanggal"
+                android:textColor="@color/black"
+                android:layout_below="@+id/tv_jadwal"></Button>
+            <Button
+                android:id="@+id/timebtn"
+                style="?android:spinnerStyle"
+                android:layout_width="126dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#808080"
+                android:onClick="timePicker"
+                android:text="Pilih Waktu Pertemuan"
+                android:textColor="@color/black"
+                android:layout_below="@+id/tv_jadwal"
+                android:layout_toEndOf="@+id/tglbtn"></Button>
 
         </RelativeLayout>
 
