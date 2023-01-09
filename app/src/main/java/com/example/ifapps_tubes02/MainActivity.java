@@ -19,6 +19,7 @@ import com.example.ifapps_tubes02.view.LoginFragment;
 import com.example.ifapps_tubes02.view.PengumumanFragment;
 import com.example.ifapps_tubes02.view.Pertemuanfragment;
 import com.example.ifapps_tubes02.view.TambahPengumumanFragment;
+import com.example.ifapps_tubes02.view.TambahPertemuan;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     PengumumanFragment pengumumanFragment;
     FRSFragment frsFragment;
     TambahPengumumanFragment tambahPengumumanfragment;
+    TambahPertemuan tambahPertemuan;
     FragmentManager fm;
     SharedPreferences preferences;
     String role;
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         pengumumanFragment = PengumumanFragment.newInstance("pengumumanFrament");
         frsFragment = FRSFragment.newInstance("frsFrament");
         tambahPengumumanfragment = TambahPengumumanFragment.newInstance("tambahPengumumanFragment");
+        tambahPertemuan = TambahPertemuan.newInstance("tambahPertemuanFragment");
 
 
 //        this.toolbar = binding.toolbar;
@@ -104,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
                     .addToBackStack(null);
         }else if (page == 6) {
             ft.replace(R.id.fragment_container, this.tambahPengumumanfragment)
+                    .addToBackStack(null);
+        }else if (page == 7) {
+            ft.replace(R.id.fragment_container, this.tambahPertemuan)
                     .addToBackStack(null);
         }
         ft.commit();
