@@ -10,12 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.ifapps_tubes02.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TambahPertemuan#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class TambahPertemuan extends Fragment {
+public class DetailPengumumanFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,14 +21,12 @@ public class TambahPertemuan extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public TambahPertemuan() {
+    public DetailPengumumanFragment() {
         // Required empty public constructor
     }
 
-
-    // TODO: Rename and change types and number of parameters
-    public static TambahPertemuan newInstance(String title) {
-        TambahPertemuan fragment = new TambahPertemuan();
+    public static DetailPengumumanFragment newInstance(String title) {
+        DetailPengumumanFragment fragment = new DetailPengumumanFragment();
         Bundle args = new Bundle();
         args.putString("title", title);
         fragment.setArguments(args);
@@ -53,6 +46,6 @@ public class TambahPertemuan extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tambah_pertemuan, container, false);
+        return inflater.inflate(R.layout.fragment_detail_pengumuman, container, false);
     }
 }

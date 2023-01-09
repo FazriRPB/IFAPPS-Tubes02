@@ -80,7 +80,6 @@ public class PengumumanFragment extends Fragment implements View.OnClickListener
         this.binding.btnAdd.setOnClickListener(this);
         this.binding.btnNext.setOnClickListener(this);
         this.binding.btnFilter.setOnClickListener(this);
-
         return this.binding.getRoot();
     }
     private void getBundle() {
