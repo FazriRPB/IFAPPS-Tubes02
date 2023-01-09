@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     PengumumanFragment pengumumanFragment;
     FRSFragment frsFragment;
     TambahPengumumanFragment tambahPengumumanfragment;
+    TambahPertemuan tambahPertemuan;
     IsiPengumumanFragment isiPengumumanFragment;
     FragmentManager fm;
     SharedPreferences preferences;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         pengumumanFragment = PengumumanFragment.newInstance("pengumumanFrament");
         frsFragment = FRSFragment.newInstance("frsFrament");
         tambahPengumumanfragment = TambahPengumumanFragment.newInstance("tambahPengumumanFragment");
+        tambahPertemuan = TambahPertemuan.newInstance("tambahPertemuanFragment");
         isiPengumumanFragment= isiPengumumanFragment.newInstance("isiPengumumanFragment");
 
 
@@ -100,13 +102,9 @@ public class MainActivity extends AppCompatActivity {
         } else if (page == 6) {
             ft.replace(R.id.fragment_container, this.tambahPengumumanfragment)
                     .addToBackStack(null);
-        } else if (page == 7) {
-            ft.replace(R.id.fragment_container, this.detailPengumumanfragment)
-                    .addToBackStack(null);
-        } else if (page == 8) {
+        }else if (page == 7) {
             ft.replace(R.id.fragment_container, this.tambahPertemuan)
                     .addToBackStack(null);
-            ft.commit();
         }
     }
 }
