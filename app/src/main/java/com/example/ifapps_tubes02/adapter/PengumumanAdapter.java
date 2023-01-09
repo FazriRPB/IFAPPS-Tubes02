@@ -95,12 +95,13 @@ public class PengumumanAdapter extends BaseAdapter {
         this.binding.layPengumuman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("id",arrlist.get(i).getId());
                 IsiPengumumanFragment isiPengumumanFragment = new IsiPengumumanFragment();
-                isiPengumumanFragment.setArguments(bundle);
-                FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-                isiPengumumanFragment.show(ft,"e");
+                Bundle arguments = new Bundle();
+                arguments.putString( "id" , arrlist.get(i).getId());
+                isiPengumumanFragment.setArguments(arguments);
+                final FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container, isiPengumumanFragment , "e").addToBackStack(null);
+                ft.commit();
             }
         });
 
@@ -131,32 +132,7 @@ public class PengumumanAdapter extends BaseAdapter {
 
         @Override
         public void onClick(View view) {
-//            if(this.binding.btnDelete== view){
-//                AlertDialog.Builder builder1 = new AlertDialog.Builder(activity);
-//                builder1.setMessage("Yakin untuk menghapus?");
-//                builder1.setCancelable(true);
-//
-//                builder1.setPositiveButton(
-//                        "Yes",
-//                        new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int id) {
-//                                delete("https://ifportal.labftis.net/api/v1/announcements/"+arrlist.get(i).getId());
-//                                arrlist.remove(i);
-//                                notifyDataSetChanged();
-//                            }
-//                        });
-//
-//                builder1.setNegativeButton(
-//                        "No",
-//                        new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int id) {
-//                                dialog.cancel();
-//                            }
-//                        });
-//
-//                AlertDialog alert11 = builder1.create();
-//                alert11.show();
-//            }
+
         }
 
         private void delete(String Base_URL) {

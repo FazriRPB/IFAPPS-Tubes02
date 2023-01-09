@@ -73,7 +73,7 @@ public class PengumumanFragment extends Fragment implements View.OnClickListener
         gson =new Gson();
         this.adapter = new PengumumanAdapter(this.getActivity(), arrlist, this.role);
         this.binding.lvItemsPengumuman.setAdapter(adapter);
-        API("https://ifportal.labftis.net/api/v1/announcements",false);
+        API(false);
         retriveTags();
         methodSearch();
 
@@ -102,7 +102,7 @@ public class PengumumanFragment extends Fragment implements View.OnClickListener
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                API("https://ifportal.labftis.net/api/v1/announcements",false);
+                API(false);
             }
 
             @Override
@@ -112,19 +112,22 @@ public class PengumumanFragment extends Fragment implements View.OnClickListener
         });
     }
 
-    public void API(String Base_URL,boolean isCursor){
+    public void API(boolean isCursor){
+        String url= "https://ifportal.labftis.net/api/v1/announcements";
         if(!isCursor){
-            Base_URL+="?filter[title]="+this.binding.etSearch.getText().toString();
+            url+="?filter[title]="+this.binding.etSearch.getText().toString();
             if(idTag.size()!=0){
                 for(int i=0;i<idTag.size();i++){
-                    Base_URL+="&filter[tags][]="+idTag.get(i);
+                    url+="&filter[tags][]="+idTag.get(i);
                 }
             }
+        }else{
+            url= "https://ifportal.labftis.net/api/v1/announcements?cursor="+next;
         }
         this.binding.lvItemsPengumuman.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.item_list_pengumuman,R.id.tv_judul,new String[]{""}));
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                Base_URL, new Response.Listener<String>() {
+                url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -206,8 +209,8 @@ public class PengumumanFragment extends Fragment implements View.OnClickListener
 
     private void authorization(String role) {
         this.role= role;
-        if(!role.equals("admin")){
-            this.binding.btnAdd.setVisibility(View.GONE);
+        if(!role.equals("student")){
+            this.binding.btnAdd.setVisibility(View.VISIBLE);
         }
     }
 
@@ -217,7 +220,7 @@ public class PengumumanFragment extends Fragment implements View.OnClickListener
         if(view==this.binding.btnAdd){
             ((MainActivity)getActivity()).changePage(6);
         }else if(view==this.binding.btnNext){
-            API("https://ifportal.labftis.net/api/v1/announcements?cursor="+next,true);
+            API(true);
         }else if(view==this.binding.btnFilter){
             TagFragment filter = new TagFragment(this);
             FragmentTransaction ft = getParentFragmentManager().beginTransaction();

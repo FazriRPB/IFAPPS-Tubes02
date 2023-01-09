@@ -15,6 +15,7 @@ import android.os.Bundle;
 import com.example.ifapps_tubes02.databinding.ActivityMainBinding;
 import com.example.ifapps_tubes02.view.FRSFragment;
 import com.example.ifapps_tubes02.view.HomeFragment;
+import com.example.ifapps_tubes02.view.IsiPengumumanFragment;
 import com.example.ifapps_tubes02.view.LoginFragment;
 import com.example.ifapps_tubes02.view.PengumumanFragment;
 import com.example.ifapps_tubes02.view.Pertemuanfragment;
@@ -28,19 +29,10 @@ public class MainActivity extends AppCompatActivity {
     PengumumanFragment pengumumanFragment;
     FRSFragment frsFragment;
     TambahPengumumanFragment tambahPengumumanfragment;
+    IsiPengumumanFragment isiPengumumanFragment;
     FragmentManager fm;
     SharedPreferences preferences;
     String role;
-    DrawerLayout dl;
-    Toolbar toolbar;
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         pengumumanFragment = PengumumanFragment.newInstance("pengumumanFrament");
         frsFragment = FRSFragment.newInstance("frsFrament");
         tambahPengumumanfragment = TambahPengumumanFragment.newInstance("tambahPengumumanFragment");
+        isiPengumumanFragment= isiPengumumanFragment.newInstance("isiPengumumanFragment");
 
 
 //        this.toolbar = binding.toolbar;
