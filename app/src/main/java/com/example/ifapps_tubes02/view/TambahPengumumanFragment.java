@@ -1,6 +1,8 @@
 package com.example.ifapps_tubes02.view;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -36,7 +38,7 @@ public class TambahPengumumanFragment extends Fragment implements View.OnClickLi
     TambahPengumumanFragmentBinding binding;
     String retrivedToken;
     String[] arrId;
-
+    TagFragment filter;
 
     public static TambahPengumumanFragment newInstance(String title){
         TambahPengumumanFragment fragment = new TambahPengumumanFragment();
@@ -53,7 +55,7 @@ public class TambahPengumumanFragment extends Fragment implements View.OnClickLi
         retrivedToken  = preferences.getString("TOKEN",null);//second parameter default value.
         this.binding.btnSimpan.setOnClickListener(this);
         this.binding.btnTag.setOnClickListener(this);
-
+        filter = new TagFragment(this);
         return this.binding.getRoot();
     }
     public void takeArr(ArrayList<String> arr){
@@ -140,13 +142,41 @@ public class TambahPengumumanFragment extends Fragment implements View.OnClickLi
     @Override
     public void onClick(View view) {
         if(view==this.binding.btnSimpan){
-            API(this.binding.etJudul.getText().toString(), this.binding.etDeskripsi.getText().toString(), this.arrId);
-            ((MainActivity)getActivity()).changePage(3);
+            if(this.binding.etJudul.getText().toString().equals("") || this.binding.tvTag.getText().toString().equals("")
+                    || this.binding.etDeskripsi.getText().toString().equals("")) {
+                Toast.makeText(getActivity(), "Lengkapi terlebih dahulu edit box diatas", Toast.LENGTH_LONG).show();
+            }else{
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+                builder1.setMessage("Yakin dengan data yang anda buat?");
+                builder1.setCancelable(true);
+
+                builder1.setPositiveButton(
+                        "Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                API(binding.etJudul.getText().toString(), binding.etDeskripsi.getText().toString(), arrId);
+                                getActivity().getSupportFragmentManager().popBackStack();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+                filter.preferences.edit().clear();
+            }
+
         }
         if(view== this.binding.btnTag){
-            TagFragment filter = new TagFragment(this);
             FragmentTransaction ft = getParentFragmentManager().beginTransaction();
             filter.show(ft,"a");
         }
     }
+
 }

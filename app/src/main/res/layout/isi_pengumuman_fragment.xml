@@ -3,49 +3,76 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:id="@+id/tv_title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-    <TextView
-        android:gravity="center"
-        android:id="@+id/tv_tags"
+        android:orientation="vertical"
+        android:background="@drawable/boxed_edit_text"
+        android:backgroundTint="@color/blue"
+        android:layout_margin="5dp">
+        <TextView
+            android:textSize="10sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/tv_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/white"/>
+        <TextView
+            android:gravity="center"
+            android:text="Dibuat pada :"
+            android:id="@+id/tv_created_at"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_created_at1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"/>
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_created_at2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="italic"
-        android:layout_marginBottom="10dp"/>
-    <TextView
-        android:gravity="center"
-        android:id="@+id/tv_created_at1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"/>
-    <TextView
-        android:gravity="center"
-        android:id="@+id/tv_created_at2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"/>
-    <TextView
-        android:gravity="center"
-        android:id="@+id/tv_author"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="5dp"/>
-    <TextView
-        android:gravity="center"
-        android:id="@+id/tv_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        />
+        android:scrollbars="vertical"
+        android:background="@drawable/boxed_edit_text"
+        android:layout_margin= "5dp" >
+        <TextView
+            android:layout_margin= "5dp"
+            android:layout_gravity=""
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            />
+    </ScrollView>
+
 </LinearLayout>

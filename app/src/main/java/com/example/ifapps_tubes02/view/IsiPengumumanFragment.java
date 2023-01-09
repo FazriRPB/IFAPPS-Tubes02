@@ -31,27 +31,37 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IsiPengumumanFragment extends DialogFragment {
+public class IsiPengumumanFragment extends Fragment {
     IsiPengumumanFragmentBinding binding;
     String retrivedToken;
     Gson gson;
+    String id;
+
+    public static IsiPengumumanFragment newInstance(String title){
+        IsiPengumumanFragment fragment = new IsiPengumumanFragment();
+        Bundle args = new Bundle();
+        args.putString("title", title);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = IsiPengumumanFragmentBinding.inflate(inflater,container,false);
         View view = this.binding.getRoot();
-        String id = getArguments().getString("id");
+        id = getArguments().getString("id");
         gson = new Gson();
         SharedPreferences preferences = getActivity().getSharedPreferences("IFAPPS-Tubes02", Context.MODE_PRIVATE);
         retrivedToken  = preferences.getString("TOKEN",null);//second parameter default value.
-        API("https://ifportal.labftis.net/api/v1/announcements/"+id);
+        API();
         return view;
     }
-    public void API(String Base_URL){
+    public void API(){
+        String url= "https://ifportal.labftis.net/api/v1/announcements/"+id;
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                Base_URL, new Response.Listener<String>() {
+                url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -78,17 +88,17 @@ public class IsiPengumumanFragment extends DialogFragment {
     public void onSuccess(String response) throws JSONException {
         JSONObject jsonObject = new JSONObject(response);
         Tags[] tags = gson.fromJson(jsonObject.getJSONArray("tags").toString(),Tags[].class);
-        String semuaTags = "";
+        String collectTags = "";
         for(int i=0;i<tags.length;i++){
-            semuaTags+=tags[i].getTag()+",";
+            collectTags+=tags[i].getTag()+",";
         }
-        semuaTags = semuaTags.substring(0,semuaTags.length()-1);
+        collectTags = collectTags.substring(0,collectTags.length()-1);
         this.binding.tvTitle.setText(jsonObject.getString("title"));
         this.binding.tvContent.setText(jsonObject.getString("content"));
-        this.binding.tvTags.setText(semuaTags);
+        this.binding.tvTags.setText(collectTags);
         String dateTime = jsonObject.getString("created_at");
         String tanggal = dateTime.substring(0,10);
-        String jam = dateTime.substring(11,19);
+        String jam = dateTime.substring(11,16);
         this.binding.tvCreatedAt1.setText(tanggal);
         this.binding.tvCreatedAt2.setText(jam);
         this.binding.tvAuthor.setText("Author: "+jsonObject.getJSONObject("author").getString("author"));

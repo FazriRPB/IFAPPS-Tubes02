@@ -13,8 +13,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.ifapps_tubes02.databinding.ActivityMainBinding;
+import com.example.ifapps_tubes02.view.DetailPengumumanFragment;
 import com.example.ifapps_tubes02.view.FRSFragment;
 import com.example.ifapps_tubes02.view.HomeFragment;
+import com.example.ifapps_tubes02.view.IsiPengumumanFragment;
 import com.example.ifapps_tubes02.view.LoginFragment;
 import com.example.ifapps_tubes02.view.PengumumanFragment;
 import com.example.ifapps_tubes02.view.Pertemuanfragment;
@@ -30,19 +32,10 @@ public class MainActivity extends AppCompatActivity {
     FRSFragment frsFragment;
     TambahPengumumanFragment tambahPengumumanfragment;
     TambahPertemuan tambahPertemuan;
+    IsiPengumumanFragment isiPengumumanFragment;
     FragmentManager fm;
     SharedPreferences preferences;
     String role;
-    DrawerLayout dl;
-    Toolbar toolbar;
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         frsFragment = FRSFragment.newInstance("frsFrament");
         tambahPengumumanfragment = TambahPengumumanFragment.newInstance("tambahPengumumanFragment");
         tambahPertemuan = TambahPertemuan.newInstance("tambahPertemuanFragment");
+        isiPengumumanFragment= isiPengumumanFragment.newInstance("isiPengumumanFragment");
 
 
 //        this.toolbar = binding.toolbar;
@@ -72,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         String retrivedToken  = preferences.getString("TOKEN",null);//second parameter default value.
         if(retrivedToken!= null){
             changePage(2);
-        }else{
+        } else {
             ft.add(R.id.fragment_container, this.loginFragment).commit();
         }
         getBundle();
@@ -86,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                         int page = result.getInt("page");
                         changePage(page);
                         String token = result.getString("token");
-                        preferences.edit().putString("TOKEN",token).apply();
+                        preferences.edit().putString("TOKEN", token).apply();
                     }
                 });
     }
@@ -96,22 +90,21 @@ public class MainActivity extends AppCompatActivity {
         if (page == 2) {
             ft.remove(this.loginFragment);
             ft.add(R.id.fragment_container, this.homeFragment);
-        }else if (page == 3) {
+        } else if (page == 3) {
             ft.replace(R.id.fragment_container, this.pengumumanFragment)
                     .addToBackStack(null);
-        }else if (page == 4) {
+        } else if (page == 4) {
             ft.replace(R.id.fragment_container, this.pertemuanfragment)
                     .addToBackStack(null);
-        }else if (page == 5) {
+        } else if (page == 5) {
             ft.replace(R.id.fragment_container, this.frsFragment)
                     .addToBackStack(null);
-        }else if (page == 6) {
+        } else if (page == 6) {
             ft.replace(R.id.fragment_container, this.tambahPengumumanfragment)
                     .addToBackStack(null);
         }else if (page == 7) {
             ft.replace(R.id.fragment_container, this.tambahPertemuan)
                     .addToBackStack(null);
         }
-        ft.commit();
     }
 }

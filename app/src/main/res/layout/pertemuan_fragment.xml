@@ -6,7 +6,7 @@
     android:background="@drawable/gradientbg">
 
     <TextView
-        android:id="@+id/tv_pengumuman"
+        android:id="@+id/tv_pertemuan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pertemuan"
@@ -18,9 +18,9 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/tv_pertemuan"
         android:id="@+id/lv_items_pertemuan"
-        android:padding="10dp"
-        android:layout_below="@+id/tv_pengumuman">
+        android:padding="10dp">
     </ListView>
     <LinearLayout
         android:id="@+id/lay_fab"
