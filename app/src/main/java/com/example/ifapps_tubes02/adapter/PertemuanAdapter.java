@@ -85,7 +85,7 @@ public class PertemuanAdapter extends BaseAdapter {
         }
         @Override
         public void onClick(View v) {
-            if(v== this.binding.button){
+              if(v== this.binding.button){
 //                Toast toast= Toast.makeText(activity.getApplicationContext(), a, Toast.LENGTH_SHORT);
 //                toast.show();
             }

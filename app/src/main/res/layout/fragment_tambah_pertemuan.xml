@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8F1FF">
+    android:background="@drawable/gradientbg">
 
     <TextView
         android:id="@+id/tv_tambah_pertemuan"
@@ -19,7 +19,7 @@
         android:paddingTop="10dp"/>
 
     <RelativeLayout
-        android:id="@+id/lay_pertemuan_form"
+        android:id="@+id/lay_pengumuman_form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_tambah_pertemuan"
@@ -37,7 +37,7 @@
                 android:id="@+id/tv_judul"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Judul"
+                android:text="Judul "
                 android:textSize="20dp" />
 
             <EditText
@@ -48,7 +48,6 @@
                 android:background="@drawable/boxed_edit_text"/>
 
         </RelativeLayout>
-
         <RelativeLayout
             android:id="@+id/lay_jadwal"
             android:layout_width="360dp"
@@ -89,7 +88,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/lay_partisipan"
+            android:id="@+id/lay_part"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -97,33 +96,36 @@
             android:paddingBottom="30dp">
 
             <TextView
-                android:id="@+id/tv_partisipan"
+                android:id="@+id/tv_part"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Partispan"
+                android:text="Partisipan "
                 android:textSize="20dp"/>
 
             <EditText
-                android:id="@+id/et_partispan"
+                android:id="@+id/et_part"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_partisipan"
+                android:layout_below="@id/tv_part"
                 android:background="@drawable/boxed_edit_text"/>
 
         </RelativeLayout>
-
         <RelativeLayout
-            android:id="@+id/lay_lihat_jadwal_dosen"
+            android:id="@+id/lay_showJadwal"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/lay_partisipan">
+            android:layout_below="@+id/lay_part"
+            android:paddingBottom="30dp"
+            android:gravity="center">
 
             <Button
-                android:layout_width="360dp"
+                android:id="@+id/btn_showJadwal"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn"
                 app:backgroundTint="@color/blue"
-                android:text="lihat jadwal dosen"/>
+                android:text="Lihat Jadwal Dosen"/>
 
         </RelativeLayout>
 
@@ -132,7 +134,7 @@
             android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/lay_lihat_jadwal_dosen">
+            android:layout_below="@id/lay_showJadwal">
 
             <TextView
                 android:id="@+id/tv_deskripsi"

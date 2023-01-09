@@ -16,7 +16,7 @@ import com.example.ifapps_tubes02.presenter.PertemuanPresenter;
 
 import java.util.ArrayList;
 
-public class Pertemuanfragment extends Fragment implements PertemuanInteface,View.OnClickListener{
+public class Pertemuanfragment extends Fragment implements PertemuanInteface,View.OnClickListener {
     PertemuanFragmentBinding binding;
     protected PertemuanAdapter adapter;
     protected PertemuanPresenter presenter;
@@ -40,6 +40,7 @@ public class Pertemuanfragment extends Fragment implements PertemuanInteface,Vie
         this.binding.lvItemsPertemuan.setAdapter(this.adapter);
 
         this.presenter.initData();
+        this.binding.btnAdd.setOnClickListener(this);
 
         return this.binding.getRoot();
     }
@@ -52,8 +53,8 @@ public class Pertemuanfragment extends Fragment implements PertemuanInteface,Vie
 
     @Override
     public void onClick(View view) {
-        if(view==this.binding.btnAdd){
-            ((MainActivity)getActivity()).changePage(6);
+        if(view==this.binding.btnAdd) {
+            ((MainActivity) getActivity()).changePage(7);
         }
     }
 }
