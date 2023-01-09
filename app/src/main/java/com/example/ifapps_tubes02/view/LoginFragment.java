@@ -35,11 +35,13 @@ public class LoginFragment extends Fragment implements LoginUI.view, View.OnClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.binding = LoginFragmentBinding.inflate(inflater, container, false);
+        presenter= new LoginPresenter(this, getActivity());
+
         this.binding.btnLogin.setOnClickListener(this);
         this.binding.admin.setOnClickListener(this);
         this.binding.mahasiswa.setOnClickListener(this);
         this.binding.dosen.setOnClickListener(this);
-        presenter= new LoginPresenter(this, getActivity());
+
         return this.binding.getRoot();
     }
 

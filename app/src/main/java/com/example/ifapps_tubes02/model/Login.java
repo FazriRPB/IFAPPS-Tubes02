@@ -33,13 +33,13 @@ public class Login implements LoginUI.main {
 
     @Override
     public void API(String[] inputArray, LoginUI.main.OnFinished onFinished) {
-        String Base_URL = "https://ifportal.labftis.net/api/v1/authenticate";
+        String url = "https://ifportal.labftis.net/api/v1/authenticate";
         Input input =new Input(inputArray[0],
                 inputArray[1],inputArray[2]);
         String inputJson = gson.toJson(input);
         RequestQueue queue = Volley.newRequestQueue(fragmentActivity);
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                Base_URL, new Response.Listener<String>() {
+                url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 String hasil =successProcessing(response);
@@ -68,7 +68,6 @@ public class Login implements LoginUI.main {
         };
         queue.add(stringRequest);
     }
-
     @Override
     public String successProcessing(String response) {
         Output output = gson.fromJson(response,Output.class);

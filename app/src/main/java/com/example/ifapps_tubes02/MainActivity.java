@@ -16,6 +16,7 @@ import com.example.ifapps_tubes02.databinding.ActivityMainBinding;
 import com.example.ifapps_tubes02.view.DetailPengumumanFragment;
 import com.example.ifapps_tubes02.view.FRSFragment;
 import com.example.ifapps_tubes02.view.HomeFragment;
+import com.example.ifapps_tubes02.view.IsiPengumumanFragment;
 import com.example.ifapps_tubes02.view.LoginFragment;
 import com.example.ifapps_tubes02.view.PengumumanFragment;
 import com.example.ifapps_tubes02.view.Pertemuanfragment;
@@ -30,11 +31,10 @@ public class MainActivity extends AppCompatActivity {
     PengumumanFragment pengumumanFragment;
     FRSFragment frsFragment;
     TambahPengumumanFragment tambahPengumumanfragment;
-    TambahPertemuan tambahPertemuan;
-    DetailPengumumanFragment detailPengumumanfragment;
+    IsiPengumumanFragment isiPengumumanFragment;
     FragmentManager fm;
-    DrawerLayout dl;
-    Toolbar toolbar;
+    SharedPreferences preferences;
+    String role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +48,7 @@ public class MainActivity extends AppCompatActivity {
         pengumumanFragment = PengumumanFragment.newInstance("pengumumanFrament");
         frsFragment = FRSFragment.newInstance("frsFrament");
         tambahPengumumanfragment = TambahPengumumanFragment.newInstance("tambahPengumumanFragment");
-        tambahPertemuan = TambahPertemuan.newInstance("tambahPertemuan");
-        detailPengumumanfragment = DetailPengumumanFragment.newInstance("detailPengumumanFragment");
+        isiPengumumanFragment= isiPengumumanFragment.newInstance("isiPengumumanFragment");
 
 
 //        this.toolbar = binding.toolbar;
@@ -61,15 +60,17 @@ public class MainActivity extends AppCompatActivity {
         this.fm = this.getSupportFragmentManager();
 
         FragmentTransaction ft = this.fm.beginTransaction();
-        SharedPreferences preferences = this.getSharedPreferences("IFAPPS-Tubes02", Context.MODE_PRIVATE);
-        String retrivedToken = preferences.getString("TOKEN", null);//second parameter default value.
-        if (retrivedToken != null) {
+        preferences = this.getSharedPreferences("IFAPPS-Tubes02", Context.MODE_PRIVATE);
+        String retrivedToken  = preferences.getString("TOKEN",null);//second parameter default value.
+        if(retrivedToken!= null){
             changePage(2);
         } else {
             ft.add(R.id.fragment_container, this.loginFragment).commit();
-
         }
+        getBundle();
+    }
 
+    private void getBundle() {
         this.getSupportFragmentManager().setFragmentResultListener(
                 "changePage", this, new FragmentResultListener() {
                     @Override
