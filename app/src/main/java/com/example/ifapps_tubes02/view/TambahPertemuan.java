@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
+import com.example.ifapps_tubes02.MainActivity;
 import com.example.ifapps_tubes02.R;
 import com.example.ifapps_tubes02.databinding.ItemListPertemuanBinding;
 import com.example.ifapps_tubes02.databinding.FragmentTambahPertemuanBinding;
@@ -30,7 +31,7 @@ public class TambahPertemuan extends Fragment implements View.OnClickListener {
     FragmentTambahPertemuanBinding binding;
     public DatePickerDialog datePickerDialog;
     public TimePickerDialog timePickerDialog;
-    int jam,menit;
+    int jam, menit;
 
     public static TambahPertemuan newInstance(String title) {
         TambahPertemuan fragment = new TambahPertemuan();
@@ -48,6 +49,7 @@ public class TambahPertemuan extends Fragment implements View.OnClickListener {
         initDatePicker();
         this.binding.timebtn.setOnClickListener(this);
         inittimePicker();
+        this.binding.btnShowJadwal.setOnClickListener(this);
         return this.binding.getRoot();
     }
 
@@ -56,7 +58,7 @@ public class TambahPertemuan extends Fragment implements View.OnClickListener {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                String date = makeDataString(day, month, year);
+                String date = makeDataString(year, month, day);
                 binding.tglbtn.setText(date);
             }
         };
@@ -71,37 +73,38 @@ public class TambahPertemuan extends Fragment implements View.OnClickListener {
 
     }
 
-    private String makeDataString(int day, int month, int year) {
-        return getMonthFormat(month) + " " + day + " " + year;
+    private String makeDataString(int year, int month, int day) {
+        return year + "-" + getMonthFormat(month) + "-" + day;
     }
 
     private String getMonthFormat(int month) {
         if (month == 1)
-            return "JANUARI";
+            return "1";
         if (month == 2)
-            return "FEBRUARI";
+            return "2";
         if (month == 3)
-            return "MARET";
+            return "3";
         if (month == 4)
-            return "APRIL";
+            return "4";
         if (month == 5)
-            return "MEI";
+            return "5";
         if (month == 6)
-            return "JUNI";
+            return "6";
         if (month == 7)
-            return "JULI";
+            return "7";
         if (month == 8)
-            return "AGUSTUS";
+            return "8";
         if (month == 9)
-            return "SEPTEMBER";
+            return "9";
         if (month == 10)
-            return "OKTOBER";
+            return "10";
         if (month == 11)
-            return "NOVEMBER";
+            return "11";
         if (month == 12)
-            return "DESEMBER";
-        return "JANUARI";
+            return "12";
+        return "1";
     }
+
     public void inittimePicker() {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
@@ -112,15 +115,18 @@ public class TambahPertemuan extends Fragment implements View.OnClickListener {
             }
         };
         int style = AlertDialog.THEME_HOLO_DARK;
-        timePickerDialog = new TimePickerDialog(this.getContext(), style,  onTimeSetListener, jam, menit, true);
+        timePickerDialog = new TimePickerDialog(this.getContext(), style, onTimeSetListener, jam, menit, true);
         timePickerDialog.setTitle("Pilih Waktu Pertemuan Dengan Dosen");
     }
+
     @Override
     public void onClick(View view) {
         if (view == this.binding.tglbtn) {
             datePickerDialog.show();
-        }else if (view == this.binding.timebtn) {
+        } else if (view == this.binding.timebtn) {
             timePickerDialog.show();
+        } else if (view == this.binding.btnShowJadwal) {
+            ((MainActivity) getActivity()).changePage(8);
         }
     }
 }

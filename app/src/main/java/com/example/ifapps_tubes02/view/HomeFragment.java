@@ -97,11 +97,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         JSONObject jsonObject = new JSONObject(response);
         Object object = jsonObject.getString("name");
         JSONArray object1= jsonObject.getJSONArray("roles");
+        Object object2= jsonObject.getString("id");
         if(!object.equals(null)){
             this.binding.tv1.setText(object.toString());
             this.binding.tv3.setText(object1.get(0).toString());
             Bundle result= new Bundle();
             result.putString("role", object1.get(0).toString());
+            result.putString("id",object2.toString());
             getParentFragmentManager().setFragmentResult("identifyRole", result);
         }
     }
