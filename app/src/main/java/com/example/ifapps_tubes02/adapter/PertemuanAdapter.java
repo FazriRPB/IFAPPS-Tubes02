@@ -16,16 +16,17 @@ public class PertemuanAdapter extends BaseAdapter {
     protected ArrayList<Pertemuan> arrlist;
     ItemListPertemuanBinding binding;
 
-    public PertemuanAdapter(Activity activity){
-        this.activity= activity;
-        this.arrlist= new ArrayList<>();
+    public PertemuanAdapter(Activity activity) {
+        this.activity = activity;
+        this.arrlist = new ArrayList<>();
     }
-    public void initList(ArrayList<Pertemuan> item){
-        for(Pertemuan items: item){
-            this.arrlist.add(items);
-        }
+
+    public void initList(String id, String title, String started_datetime, String end_datetime) {
+        Pertemuan pertemuan = new Pertemuan(id, title, started_datetime, end_datetime);
+        arrlist.add(pertemuan);
         this.notifyDataSetChanged();
     }
+
     @Override
     public int getCount() {
         return this.arrlist.size();
@@ -44,24 +45,27 @@ public class PertemuanAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder viewHolder;
+        /* ViewHolder viewHolder;*/
 
-        if (view== null){
-            binding= ItemListPertemuanBinding.inflate(this.activity.getLayoutInflater());
-            view= binding.getRoot();
-            viewHolder= new ViewHolder(binding, this, i);
-            view.setTag(viewHolder);
-        }else{
-            viewHolder= (ViewHolder) view.getTag();
+        if (view == null) {
+            binding = ItemListPertemuanBinding.inflate(this.activity.getLayoutInflater());
+            view = binding.getRoot();
+            /*viewHolder= new ViewHolder(binding, this, i);
+            view.setTag(viewHolder);*/
+        } else {
+            this.notifyDataSetChanged();
         }
-        Pertemuan currentFood= (Pertemuan) this.getItem(i);
-        viewHolder.updateTitle(currentFood.getJudul());
-        viewHolder.updateDetail(currentFood.getPeople());
-        viewHolder.dateDetail(currentFood.getDeskripsi());
+        this.binding.title.setText(arrlist.get(i).gettitle());
+        this.binding.startedDatetime.setText(arrlist.get(i).getStart_datetime());
+        this.binding.endDatetime.setText(arrlist.get(i).getEnd_datetime());
         return view;
     }
 
-    public class ViewHolder implements View.OnClickListener {
+    public void initList(ArrayList<Pertemuan> datas) {
+    }
+}
+
+    /*public class ViewHolder implements View.OnClickListener {
         //untuk akses per-item/row di listview
         ItemListPertemuanBinding binding;
         PertemuanAdapter adapter;
@@ -71,11 +75,10 @@ public class PertemuanAdapter extends BaseAdapter {
             this.binding= binding;
             this.adapter= adapter;
             this.i= i;
-            this.binding.button.setOnClickListener(this);
 
         }
         public void updateTitle(String title){
-            this.binding.judul.setText(title);
+            this.binding.title.setText(title);
         }
         public void updateDetail(String detail){
             this.binding.owner.setText(detail);
@@ -93,4 +96,4 @@ public class PertemuanAdapter extends BaseAdapter {
 
 
     }
-}
+}*/

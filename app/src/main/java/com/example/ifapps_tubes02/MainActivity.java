@@ -16,10 +16,12 @@ import com.example.ifapps_tubes02.databinding.ActivityMainBinding;
 import com.example.ifapps_tubes02.view.FRSFragment;
 import com.example.ifapps_tubes02.view.HomeFragment;
 import com.example.ifapps_tubes02.view.IsiPengumumanFragment;
+import com.example.ifapps_tubes02.view.JadwalDosenPertemuan;
 import com.example.ifapps_tubes02.view.LoginFragment;
 import com.example.ifapps_tubes02.view.PengumumanFragment;
 import com.example.ifapps_tubes02.view.Pertemuanfragment;
 import com.example.ifapps_tubes02.view.TambahPengumumanFragment;
+import com.example.ifapps_tubes02.view.TambahPertemuan;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     FRSFragment frsFragment;
     TambahPengumumanFragment tambahPengumumanfragment;
     IsiPengumumanFragment isiPengumumanFragment;
+    TambahPertemuan tambahPertemuanfragment;
+    JadwalDosenPertemuan jadwalDosenPertemuanfragment;
     FragmentManager fm;
     SharedPreferences preferences;
     String role;
@@ -47,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         frsFragment = FRSFragment.newInstance("frsFrament");
         tambahPengumumanfragment = TambahPengumumanFragment.newInstance("tambahPengumumanFragment");
         isiPengumumanFragment= isiPengumumanFragment.newInstance("isiPengumumanFragment");
+        tambahPertemuanfragment = TambahPertemuan.newInstance("tambahPertemuan");
+        jadwalDosenPertemuanfragment = JadwalDosenPertemuan.newInstance("jadwalDosenPertemuanfragment");
 
 
 //        this.toolbar = binding.toolbar;
@@ -106,6 +112,12 @@ public class MainActivity extends AppCompatActivity {
                     .addToBackStack(null);
         }else if (page == 6) {
             ft.replace(R.id.fragment_container, this.tambahPengumumanfragment)
+                    .addToBackStack(null);
+        }else if (page == 7) {
+            ft.replace(R.id.fragment_container, this.tambahPertemuanfragment)
+                    .addToBackStack(null);
+        }else if (page == 8) {
+            ft.replace(R.id.fragment_container, this.jadwalDosenPertemuanfragment)
                     .addToBackStack(null);
         }
         ft.commit();

@@ -14,20 +14,4 @@ public class FRSPresenter {
         this.view = view;
         this.datas= new ArrayList<>();
     }
-    public void initData(){
-        frs= new FRS("Semester Ganjil","2021-2022");
-        datas.add(frs);
-        frs= new FRS("Semester Genap","2021-2022");
-        datas.add(frs);
-        frs= new FRS("Semester Ganjil","2022-2023");
-        datas.add(frs);
-        frs= new FRS("Semester Genap","2022-2023");
-        datas.add(frs);
-        frs= new FRS("Semester Ganjil","2023-2024");
-        datas.add(frs);
-        frs= new FRS("Semester Genap","2023-2024");
-        datas.add(frs);
-
-        view.addDatas(datas);
-    }
 }

@@ -1,39 +1,31 @@
 package com.example.ifapps_tubes02.model;
 
 public class Pertemuan {
-    private String judul;
-    private String people;
-    private String deskripsi;
+    private String title;
     private String start_datetime;
     private String end_datetime;
+    String id;
 
-    public Pertemuan(String judul, String people, String deskripsi){
-        this.judul= judul;
-        this.people= people;
-        this.deskripsi= deskripsi;
+    public Pertemuan(String id, String title, String start_datetime, String end_datetime){
+        this.id= id;
+        this.title= title;
+        this.start_datetime= start_datetime;
+        this.end_datetime= end_datetime;
     }
-    public String getJudul() {
-        return judul;
-    }
-
-    public void setJudul(String judul) {
-        this.judul = judul;
+    public String gettitle() {
+        return title;
     }
 
-    public String getPeople() {
-        return people;
+    public String getId() {
+        return id;
     }
 
-    public void setPeople(String people) {
-        this.people = people;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getDeskripsi() {
-        return deskripsi;
-    }
-
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
+    public void settitle(String title) {
+        this.title = title;
     }
 
 
