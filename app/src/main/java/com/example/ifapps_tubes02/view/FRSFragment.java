@@ -41,6 +41,7 @@ public class FRSFragment extends Fragment {
     int active_year;
     ArrayList<Integer> semester;
     String token;
+    String email;
 
     @Nullable
     @Override
@@ -50,7 +51,8 @@ public class FRSFragment extends Fragment {
         semester = new ArrayList<>();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("IFAPPS-Tubes02", Context.MODE_PRIVATE);
         this.token = sharedPreferences.getString("TOKEN",null);
-        callAPI("https://ifportal.labftis.net/api/v1/students/email/aguero@sergio.com","cariInitialYear");
+        this.email= sharedPreferences.getString("email",null);
+        callAPI("https://ifportal.labftis.net/api/v1/students/email/"+this.email,"cariInitialYear");
         return view;
     }
     public static FRSFragment newInstance(String title){
