@@ -1,11 +1,13 @@
-package com.example.ifapps_tubes02.presenter;
+package com.example.ifapps_tubes02.presenter.pengumuman;
 
 import android.widget.CheckBox;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.example.ifapps_tubes02.model.PengumumanModel;
 import com.example.ifapps_tubes02.model.Tag;
+import com.example.ifapps_tubes02.presenter.pengumuman.TagUI;
+
+import java.util.ArrayList;
 
 public class TagPresenter implements TagUI.presenter, TagUI.main.OnFinished{
     TagUI.view view;
@@ -25,5 +27,10 @@ public class TagPresenter implements TagUI.presenter, TagUI.main.OnFinished{
     @Override
     public void addView(CheckBox checkBox) {
         view.addView(checkBox);
+    }
+
+    @Override
+    public void onSuccess(ArrayList<String> map) {
+        view.mapping(map);
     }
 }

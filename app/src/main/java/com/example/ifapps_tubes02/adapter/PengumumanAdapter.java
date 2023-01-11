@@ -80,7 +80,6 @@ public class PengumumanAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup parent) {
         ViewHolder viewHolder;
         this.binding= ItemListPengumumanBinding.inflate(activity.getLayoutInflater());
-        this.binding.tvJudul.setText(this.arrlist.get(i).getTitle());
         if(view== null){
             view = this.binding.getRoot();
             viewHolder= new ViewHolder(binding, this, i, activity);
@@ -90,8 +89,8 @@ public class PengumumanAdapter extends BaseAdapter {
         for(int j= 0; j<arrlist.get(i).getTags().size(); j++){
             tags+= arrlist.get(i).getTags().get(j).getTag()+",";
         }
-        tags= tags.substring(0, tags.length()-1);
-        this.binding.tvTags.setText(tags);
+        updateView(i,tags );
+
         this.binding.layPengumuman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,6 +105,11 @@ public class PengumumanAdapter extends BaseAdapter {
         });
 
         return view;
+    }
+
+    private void updateView(int i, String tags) {
+        this.binding.tvJudul.setText(this.arrlist.get(i).getTitle());
+        this.binding.tvTags.setText(tags);
     }
 
     public class ViewHolder implements View.OnClickListener{

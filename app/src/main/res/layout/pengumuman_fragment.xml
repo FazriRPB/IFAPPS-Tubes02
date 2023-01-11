@@ -27,6 +27,7 @@
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:hint="   Search"
+            android:text=""
             android:background="@drawable/boxed_edit_text"
             android:drawableRight="@drawable/icon_search">
         </EditText>
@@ -50,7 +51,7 @@
         <ListView
             android:id="@+id/lv_items_pengumuman"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="wrap_content"
             android:padding="10dp">
         </ListView>
         <Button

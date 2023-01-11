@@ -30,6 +30,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ifapps_tubes02.R;
 import com.example.ifapps_tubes02.databinding.TagsFragmentBinding;
+import com.example.ifapps_tubes02.presenter.pengumuman.PengumumanPresenter;
+import com.example.ifapps_tubes02.presenter.pengumuman.TambahPengumumanPresenter;
+import com.example.ifapps_tubes02.presenter.pengumuman.TambahPengumumanUI;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,11 +52,15 @@ public class TagFragment extends DialogFragment implements View.OnClickListener 
     TambahPengumumanFragment tambahPengumumanFragment;
     ArrayList<String> arr;
     ArrayList<String> arrId;
-    public TagFragment(PengumumanFragment pengumumanFragment){
+    PengumumanPresenter presenter;
+    TambahPengumumanPresenter presenter1;
+    public TagFragment(PengumumanFragment pengumumanFragment, PengumumanPresenter presenter){
         this.pengumumanFragment = pengumumanFragment;
+        this.presenter= presenter;
     }
-    public TagFragment(TambahPengumumanFragment pengumumanFragment){
+    public TagFragment(TambahPengumumanFragment pengumumanFragment, TambahPengumumanPresenter presenter1){
         this.tambahPengumumanFragment = pengumumanFragment;
+        this.presenter1= presenter1;
     }
     @Nullable
     @Override
@@ -183,20 +190,21 @@ public class TagFragment extends DialogFragment implements View.OnClickListener 
     @Override
     public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
-        if(tambahPengumumanFragment== null){
-            pengumumanFragment.retriveTags();
-            pengumumanFragment.API(false);
+        if(presenter1== null){
+            presenter.API(false);
         }
-        if(pengumumanFragment== null && arrId!= null){
-            tambahPengumumanFragment.takeArr(arrId);
-            tambahPengumumanFragment.arrToText(arr);
+        if(presenter== null && arrId!= null){
+            presenter1.takeArr(arrId);
+            presenter1.arrToText(arr);
         }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        preferences.edit().remove("tag").apply();
-        preferences.edit().remove("idTag").apply();
+        if(presenter== null){
+            preferences.edit().remove("tag").apply();
+            preferences.edit().remove("idTag").apply();
+        }
     }
 }
