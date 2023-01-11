@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.ifapps_tubes02.MainActivity;
 import com.example.ifapps_tubes02.adapter.PertemuanAdapter;
 import com.example.ifapps_tubes02.presenter.PertemuanInteface;
 import com.example.ifapps_tubes02.databinding.PertemuanFragmentBinding;
@@ -15,7 +16,7 @@ import com.example.ifapps_tubes02.presenter.PertemuanPresenter;
 
 import java.util.ArrayList;
 
-public class Pertemuanfragment extends Fragment implements PertemuanInteface {
+public class Pertemuanfragment extends Fragment implements PertemuanInteface,View.OnClickListener {
     PertemuanFragmentBinding binding;
     protected PertemuanAdapter adapter;
     protected PertemuanPresenter presenter;
@@ -39,6 +40,7 @@ public class Pertemuanfragment extends Fragment implements PertemuanInteface {
         this.binding.lvItemsPertemuan.setAdapter(this.adapter);
 
         this.presenter.initData();
+        this.binding.btnAdd.setOnClickListener(this);
 
         return this.binding.getRoot();
     }
@@ -47,5 +49,12 @@ public class Pertemuanfragment extends Fragment implements PertemuanInteface {
     public void addDatas(ArrayList<Pertemuan> datas) {
         this.adapter.initList(datas);
         this.adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view==this.binding.btnAdd) {
+            ((MainActivity) getActivity()).changePage(7);
+        }
     }
 }
