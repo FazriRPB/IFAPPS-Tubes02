@@ -76,7 +76,7 @@ public class Login implements LoginUI.main {
         result.putString("token",output.token);
 
         fragmentActivity.getSupportFragmentManager().setFragmentResult("changePage",result);
-//        Toast.makeText(fragmentActivity,hasil,Toast.LENGTH_LONG).show();
+
         return "Login Berhasil";
     }
 
@@ -84,7 +84,6 @@ public class Login implements LoginUI.main {
     public String failedProcessing(VolleyError error) throws JSONException {
         String msg="";
         if(error instanceof NoConnectionError){
-//            Toast.makeText(fragmentActivity,"Tidak ada koneksi internet",Toast.LENGTH_LONG).show();
             msg="Tidak ada koneksi internet";
         }else if(error instanceof TimeoutError){
             msg= "Tidak dapat terhubung dengan jaringan! \n Silahkan Coba Lagi!";

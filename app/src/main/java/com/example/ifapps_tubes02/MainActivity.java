@@ -79,6 +79,15 @@ public class MainActivity extends AppCompatActivity {
                         preferences.edit().putString("TOKEN",token).apply();
                     }
                 });
+
+        this.getSupportFragmentManager().setFragmentResultListener(
+                "identifyRole", this, new FragmentResultListener() {
+                    @Override
+                    public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                        String role = result.getString("role");
+                        preferences.edit().putString("role",role).apply();
+                    }
+                });
     }
 
     public void changePage(int page) {

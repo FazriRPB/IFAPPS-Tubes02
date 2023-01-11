@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"/>
+
         <TextView
             android:layout_marginTop="10dp"
             android:gravity="center"
@@ -56,11 +57,46 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textColor="@color/white"/>
+        <Button
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_edit"
+            android:layout_margin="5dp"
+            android:text="edit"
+            android:textColor="@color/blue"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/white"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_submit_edit"
+            android:layout_gravity="center"
+            android:textColor="@color/blue"
+            android:backgroundTint="@color/white"
+            android:text="Selesai"
+            android:visibility="gone"
+            >
+        </Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_delete"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="#880808"
+            android:visibility="gone"
+            android:text="Delete"
+            >
+        </Button>
 
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/sv1"
         android:scrollbars="vertical"
         android:background="@drawable/boxed_edit_text"
         android:layout_margin= "5dp" >
@@ -74,5 +110,21 @@
             android:padding="10dp"
             />
     </ScrollView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:id="@+id/sv2"
+        android:visibility="gone"
+        android:background="@drawable/boxed_edit_text"
+        android:layout_margin= "5dp" >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_content"
+            android:visibility="gone">
+        </EditText>
+    </ScrollView>
+
 
 </LinearLayout>

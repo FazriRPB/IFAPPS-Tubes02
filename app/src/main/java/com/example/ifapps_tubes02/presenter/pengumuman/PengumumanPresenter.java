@@ -1,14 +1,9 @@
-package com.example.ifapps_tubes02.presenter;
+package com.example.ifapps_tubes02.presenter.pengumuman;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.android.volley.VolleyError;
-import com.example.ifapps_tubes02.R;
-import com.example.ifapps_tubes02.databinding.ItemListPengumumanBinding;
 import com.example.ifapps_tubes02.model.Pengumuman;
 import com.example.ifapps_tubes02.model.PengumumanModel;
-
-import org.json.JSONException;
 
 import java.util.ArrayList;
 

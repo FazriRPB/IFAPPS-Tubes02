@@ -71,7 +71,15 @@
                 android:layout_height="wrap_content"
                 android:text="Tag"
                 android:textSize="20dp"/>
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="|||"
+                android:layout_alignParentRight="true"
+                android:id="@+id/btn_add_tag"
+                android:layout_above="@id/btn_tag">
 
+            </Button>
             <TextView
                 android:padding="5dp"
                 android:id="@+id/btn_tag"

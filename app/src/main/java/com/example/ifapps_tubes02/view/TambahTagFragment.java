@@ -1,10 +1,16 @@
-package com.example.ifapps_tubes02.model;
+package com.example.ifapps_tubes02.view;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.fragment.app.FragmentActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NoConnectionError;
@@ -15,49 +21,45 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.ifapps_tubes02.presenter.pengumuman.TambahPengumumanUI;
-import com.google.gson.Gson;
+import com.example.ifapps_tubes02.databinding.TambahtagFragmentBinding;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TambahPengumuman implements TambahPengumumanUI.main {
-    Gson gson;
-    FragmentActivity fragmentActivity;
+public class TambahTagFragment extends DialogFragment implements View.OnClickListener{
+    TambahtagFragmentBinding binding;
     String retrivedToken;
+    TambahPengumumanFragment tambahTagFragment;
 
-    public TambahPengumuman(FragmentActivity fragmentActivity) {
-        this.fragmentActivity = fragmentActivity;
-        gson= new Gson();
-        SharedPreferences preferences = fragmentActivity.getSharedPreferences("IFAPPS-Tubes02", Context.MODE_PRIVATE);
-        retrivedToken  = preferences.getString("TOKEN",null);//second parameter default value.
+    public TambahTagFragment(TambahPengumumanFragment activity) {
+        this.tambahTagFragment= activity;
     }
-    @Override
-    public void API(String title, String content, String[] tags, TambahPengumumanUI.main.OnFinsihed onFinsihed){
-        String Base_URL= "https://ifportal.labftis.net/api/v1/announcements";
-        RequestQueue queue = Volley.newRequestQueue(fragmentActivity);
-        JSONArray jsonArray= new JSONArray(Arrays.asList(tags));
-        JSONObject js = new JSONObject();
-        try {
-            js.put("title", title);
-            js.put("content", content);
-            js.put("tags", jsonArray);
 
-        }catch (JSONException e) {
-            e.printStackTrace();
-        }
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding= TambahtagFragmentBinding.inflate(getLayoutInflater());
+        SharedPreferences preferences = getActivity().getSharedPreferences("IFAPPS-Tubes02", Context.MODE_PRIVATE);
+        retrivedToken  = preferences.getString("TOKEN",null);//second parameter default value.
+
+        this.binding.btnBuat.setOnClickListener(this);
+        return binding.getRoot();
+    }
+
+    public void API() throws JSONException {
+        String Base_URL= "https://ifportal.labftis.net/api/v1/tags";
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        JSONObject js = new JSONObject();
+        js.put("tag", this.binding.etTag.getText().toString());
         JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST,
                 Base_URL, js, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    String hasil= onSuccess(response);
-//                    onFinsihed.onSuccess(hasil);
+                    onSuccess(response);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -66,9 +68,7 @@ public class TambahPengumuman implements TambahPengumumanUI.main {
             @Override
             public void onErrorResponse(VolleyError error) {
                 try {
-                    String hasil=
                     onFailed(error);
-//                    onFinsihed.onSuccess(hasil);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -80,16 +80,13 @@ public class TambahPengumuman implements TambahPengumumanUI.main {
                 map.put("Authorization","Bearer "+retrivedToken);
                 return map;
             }
-
         };
         queue.add(stringRequest);
     }
-    @Override
-    public String onSuccess(JSONObject response) throws JSONException {
-        return "berhasil";
+    public void onSuccess(JSONObject response) throws JSONException {
+        Toast.makeText(getActivity(),"Tag Berhasil dibuat",Toast.LENGTH_LONG).show();
     }
-    @Override
-    public String onFailed(VolleyError error) throws JSONException {
+    public void onFailed(VolleyError error) throws JSONException {
         String keluaran= "";
         if(error instanceof NoConnectionError){
             keluaran= "Tidak ada koneksi internet";
@@ -99,9 +96,20 @@ public class TambahPengumuman implements TambahPengumumanUI.main {
         else{
             String output = new String(error.networkResponse.data);
             JSONObject jsonObject = new JSONObject(output);
-            keluaran = jsonObject.toString();
+            keluaran = jsonObject.get("errcode").toString();
         }
 
-        return keluaran;
+        Toast.makeText(getActivity(),keluaran,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(this.binding.btnBuat== view){
+            try {
+                API();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

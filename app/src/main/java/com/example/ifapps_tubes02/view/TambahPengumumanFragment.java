@@ -24,6 +24,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ifapps_tubes02.MainActivity;
 import com.example.ifapps_tubes02.databinding.TambahPengumumanFragmentBinding;
+import com.example.ifapps_tubes02.presenter.pengumuman.TambahPengumumanPresenter;
+import com.example.ifapps_tubes02.presenter.pengumuman.TambahPengumumanUI;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,11 +36,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TambahPengumumanFragment extends Fragment implements View.OnClickListener{
+public class TambahPengumumanFragment extends Fragment implements TambahPengumumanUI.view, View.OnClickListener{
     TambahPengumumanFragmentBinding binding;
     String retrivedToken;
     String[] arrId;
     TagFragment filter;
+    TambahTagFragment tambahTagFragment;
+    TambahPengumumanPresenter presenter;
 
     public static TambahPengumumanFragment newInstance(String title){
         TambahPengumumanFragment fragment = new TambahPengumumanFragment();
@@ -55,12 +59,16 @@ public class TambahPengumumanFragment extends Fragment implements View.OnClickLi
         retrivedToken  = preferences.getString("TOKEN",null);//second parameter default value.
         this.binding.btnSimpan.setOnClickListener(this);
         this.binding.btnTag.setOnClickListener(this);
-        filter = new TagFragment(this);
+        this.binding.btnAddTag.setOnClickListener(this);
+        presenter= new TambahPengumumanPresenter(this, getActivity());
+        tambahTagFragment= new TambahTagFragment(this);
+        filter = new TagFragment(this, presenter);
         return this.binding.getRoot();
     }
     public void takeArr(ArrayList<String> arr){
         this.arrId= new String[arr.size()];
         for(int i= 0; i<arrId.length; i++){
+            System.out.println(arr.get(i));
             arrId[i]= arr.get(i);
         }
     }
@@ -76,69 +84,6 @@ public class TambahPengumumanFragment extends Fragment implements View.OnClickLi
         this.binding.btnTag.setText(result);
 
     }
-    public void API(String title, String content, String[] tags){
-        String Base_URL= "https://ifportal.labftis.net/api/v1/announcements";
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
-        JSONArray jsonArray= new JSONArray(Arrays.asList(tags));
-        JSONObject js = new JSONObject();
-        try {
-            js.put("title", title);
-            js.put("content", content);
-            js.put("tags", jsonArray);
-
-        }catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST,
-                Base_URL, js, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    onSuccess(response);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                try {
-                    onFailed(error);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> map = new HashMap<>();
-                map.put("Authorization","Bearer "+retrivedToken);
-                return map;
-            }
-
-        };
-        queue.add(stringRequest);
-    }
-
-    public void onSuccess(JSONObject response) throws JSONException {
-
-    }
-    public void onFailed(VolleyError error) throws JSONException {
-        String keluaran= "";
-        if(error instanceof NoConnectionError){
-            keluaran= "Tidak ada koneksi internet";
-        }else if(error instanceof TimeoutError){
-            keluaran= "Tidak dapat terhubung dengan jaringan! \n Silahkan Coba Lagi!";
-        }
-        else{
-            String output = new String(error.networkResponse.data);
-            JSONObject jsonObject = new JSONObject(output);
-            keluaran = jsonObject.toString();
-        }
-
-        Toast.makeText(getActivity(),keluaran,Toast.LENGTH_LONG).show();
-    }
-
     @Override
     public void onClick(View view) {
         if(view==this.binding.btnSimpan){
@@ -154,7 +99,7 @@ public class TambahPengumumanFragment extends Fragment implements View.OnClickLi
                         "Yes",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                API(binding.etJudul.getText().toString(), binding.etDeskripsi.getText().toString(), arrId);
+                                presenter.API(binding.etJudul.getText().toString(), binding.etDeskripsi.getText().toString(), arrId);
                                 getActivity().getSupportFragmentManager().popBackStack();
                             }
                         });
@@ -177,6 +122,14 @@ public class TambahPengumumanFragment extends Fragment implements View.OnClickLi
             FragmentTransaction ft = getParentFragmentManager().beginTransaction();
             filter.show(ft,"a");
         }
+        if(view== this.binding.btnAddTag){
+            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            tambahTagFragment.show(ft,"");
+        }
     }
 
+    @Override
+    public void showToast(String hasil) {
+        Toast.makeText(getActivity(),hasil,Toast.LENGTH_LONG).show();
+    }
 }
