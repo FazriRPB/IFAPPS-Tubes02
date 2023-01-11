@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                         String role = result.getString("role");
-                        String email= result.getString("email);
+                        String email= result.getString("email");
                         preferences.edit().putString("role",role).apply();
                         preferences.edit().putString("email",email).apply();
                                                        
